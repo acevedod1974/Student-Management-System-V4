@@ -6,6 +6,7 @@ import { useCourseStore } from "../store/useCourseStore";
 import { PlusCircle, Trash2 } from "lucide-react";
 import toast from "react-hot-toast";
 import { confirmAction } from "../utils/confirmAction";
+import { DataManagement } from "../components/DataManagement";
 
 export const Dashboard: React.FC = () => {
   const courses = useCourseStore((state) => state.courses);
@@ -76,6 +77,11 @@ export const Dashboard: React.FC = () => {
       <div className="bg-white rounded-lg shadow p-6">
         <h2 className="text-xl font-semibold mb-4">Comparación de Cursos</h2>
         <CourseOverviewChart courses={courses} />
+      </div>
+
+      <div className="bg-white rounded-lg shadow p-6">
+        <h2 className="text-xl font-semibold mb-4">Gestión de Datos</h2>
+        <DataManagement />
       </div>
     </div>
   );

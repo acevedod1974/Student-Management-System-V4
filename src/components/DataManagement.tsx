@@ -1,23 +1,23 @@
-import React from 'react';
-import { Download, Upload } from 'lucide-react';
-import { useCourseStore } from '../store/useCourseStore';
-import toast from 'react-hot-toast';
+import React from "react";
+import { Download, Upload } from "lucide-react";
+import { useStudentStore } from "../store/useStudentStore";
+import toast from "react-hot-toast";
 
 export const DataManagement: React.FC = () => {
-  const { exportData, importData } = useCourseStore();
+  const { exportData, importData } = useStudentStore();
 
   const handleExport = () => {
     const data = exportData();
-    const blob = new Blob([data], { type: 'application/json' });
+    const blob = new Blob([data], { type: "application/json" });
     const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
+    const a = document.createElement("a");
     a.href = url;
-    a.download = `curso-data-${new Date().toISOString().split('T')[0]}.json`;
+    a.download = `students-data-${new Date().toISOString().split("T")[0]}.json`;
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
     URL.revokeObjectURL(url);
-    toast.success('Datos exportados exitosamente');
+    toast.success("Datos exportados exitosamente");
   };
 
   const handleImport = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -27,7 +27,7 @@ export const DataManagement: React.FC = () => {
       reader.onload = (e) => {
         const content = e.target?.result as string;
         importData(content);
-        toast.success('Datos importados exitosamente');
+        toast.success("Datos importados exitosamente");
       };
       reader.readAsText(file);
     }

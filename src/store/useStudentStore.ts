@@ -60,17 +60,19 @@ export const useStudentStore = create<StudentStore>((set, get) => ({
     set((state) => ({
       students: state.students.filter((student) => student.id !== id),
     })),
-  // Export data as JSON string
-  exportData: () =>
-    JSON.stringify(
-      get().students,
-      (key, value) => (key === "id" ? undefined : value),
-      2
-    ),
 
-  // Import data from JSON string
+  // Export student data as JSON
+  exportData: () => JSON.stringify(get().students, null, 2),
+
+  // Import student data from JSON
   importData: (jsonData) => {
-    const importedStudents = JSON.parse(jsonData);
-    set({ students: importedStudents });
+    try {
+      const students = JSON.parse(jsonData);
+      if (Array.isArray(students)) {
+        set({ students });
+      }
+    } catch (error) {
+      console.error("Error importing data:", error);
+    }
   },
 }));
