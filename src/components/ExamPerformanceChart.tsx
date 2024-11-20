@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import {
   LineChart,
   Line,
@@ -8,14 +8,17 @@ import {
   Tooltip,
   Legend,
   ResponsiveContainer,
-} from 'recharts';
-import { Course } from '../types/course';
+} from "recharts";
+import { Course, Student } from "../types/course";
 
-interface ExamPerformanceChartProps {
+type ExamPerformanceChartProps = {
   course: Course;
-}
+  student: Student;
+};
 
-export const ExamPerformanceChart: React.FC<ExamPerformanceChartProps> = ({ course }) => {
+export const ExamPerformanceChart: React.FC<ExamPerformanceChartProps> = ({
+  course,
+}) => {
   const data = course.exams.map((exam, index) => {
     const examGrades = course.students.map(
       (student) => student.grades[index].score

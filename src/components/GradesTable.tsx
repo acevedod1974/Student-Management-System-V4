@@ -1,17 +1,20 @@
 import React, { useState } from "react";
-import { Trash2, Save, Edit2, X, PlusCircle, MinusCircle } from "lucide-react";
-import { Course } from "../types/course";
+import { useNavigate } from "react-router-dom";
+import { Trash2, Save, PlusCircle, MinusCircle } from "lucide-react";
+import { Course, Student } from "../types/course";
 import { useCourseStore } from "../store/useCourseStore";
 import toast from "react-hot-toast";
 import { confirmAction } from "../utils/confirmAction";
 
 interface GradesTableProps {
   course: Course;
+  student?: Student;
   onDeleteStudent: (studentId: string) => void;
 }
 
 export const GradesTable: React.FC<GradesTableProps> = ({
   course,
+  student,
   onDeleteStudent,
 }) => {
   const {
@@ -39,6 +42,8 @@ export const GradesTable: React.FC<GradesTableProps> = ({
   const [newExamName, setNewExamName] = useState<string>("");
   const [editingMaxScore, setEditingMaxScore] = useState<number | null>(null);
   const [newMaxScore, setNewMaxScore] = useState<number>(100);
+
+  const navigate = useNavigate();
 
   const handleEditStart = (
     type: "grade" | "student" | "exam" | "maxScore",
@@ -167,6 +172,12 @@ export const GradesTable: React.FC<GradesTableProps> = ({
     }
   };
 
+  const handleNameClick = (studentId: string) => {
+    navigate(`/course/${course.id}/student/${studentId}`);
+  };
+
+  const students = student ? [student] : course.students;
+
   return (
     <div className="overflow-x-auto">
       <table className="min-w-full bg-white border border-gray-200">
@@ -240,71 +251,18 @@ export const GradesTable: React.FC<GradesTableProps> = ({
           </tr>
         </thead>
         <tbody className="divide-y divide-gray-200">
-          {course.students.map((student) => (
+          {students.map((student) => (
             <tr key={student.id} className="hover:bg-gray-50">
               <td className="px-6 py-4 whitespace-nowrap">
-                {editingStudent?.id === student.id ? (
-                  <div className="space-y-2">
-                    <input
-                      type="text"
-                      value={editingStudent.firstName}
-                      onChange={(e) =>
-                        setEditingStudent({
-                          ...editingStudent,
-                          firstName: e.target.value,
-                        })
-                      }
-                      onKeyDown={(e) => handleKeyPress(e, "student")}
-                      placeholder="Nombre"
-                      className="block w-full px-2 py-1 text-sm border rounded"
-                    />
-                    <input
-                      type="text"
-                      value={editingStudent.lastName}
-                      onChange={(e) =>
-                        setEditingStudent({
-                          ...editingStudent,
-                          lastName: e.target.value,
-                        })
-                      }
-                      onKeyDown={(e) => handleKeyPress(e, "student")}
-                      placeholder="Apellido"
-                      className="block w-full px-2 py-1 text-sm border rounded"
-                    />
-                    <div className="flex gap-2">
-                      <button
-                        onClick={() => handleEditSave("student", student.id)}
-                        className="p-1 text-green-600 hover:bg-green-50 rounded-full transition-colors"
-                      >
-                        <Save className="w-4 h-4" />
-                      </button>
-                      <button
-                        onClick={() => setEditingStudent(null)}
-                        className="p-1 text-red-600 hover:bg-red-50 rounded-full transition-colors"
-                      >
-                        <X className="w-4 h-4" />
-                      </button>
-                    </div>
-                  </div>
-                ) : (
-                  <div>
-                    <div className="font-medium text-gray-900">
-                      {student.firstName} {student.lastName}
-                    </div>
-                    <div className="text-sm text-gray-500">{student.id}</div>
-                    <button
-                      onClick={() =>
-                        handleEditStart("student", student.id, {
-                          firstName: student.firstName,
-                          lastName: student.lastName,
-                        })
-                      }
-                      className="mt-1 p-1 text-blue-600 hover:bg-blue-50 rounded-full transition-colors"
-                    >
-                      <Edit2 className="w-4 h-4" />
-                    </button>
-                  </div>
-                )}
+                <div className="space-y-2">
+                  <span
+                    className="font-medium text-gray-900 cursor-pointer"
+                    onClick={() => handleNameClick(student.id)}
+                  >
+                    {student.firstName} {student.lastName}
+                  </span>
+                  <div className="text-sm text-gray-500">{student.id}</div>
+                </div>
               </td>
               {student.grades.map((grade) => {
                 const exam = course.exams.find(
@@ -394,21 +352,23 @@ export const GradesTable: React.FC<GradesTableProps> = ({
           ))}
         </tbody>
       </table>
-      <div className="flex items-center gap-2 mt-4">
-        <input
-          type="text"
-          value={newExamName}
-          onChange={(e) => setNewExamName(e.target.value)}
-          placeholder="Nombre del nuevo examen"
-          className="block w-full px-2 py-1 text-sm border rounded"
-        />
-        <button
-          onClick={handleAddExam}
-          className="p-2 text-green-600 hover:bg-green-50 rounded-full transition-colors"
-        >
-          <PlusCircle className="w-6 h-6" />
-        </button>
-      </div>
+      {!student && (
+        <div className="flex items-center gap-2 mt-4">
+          <input
+            type="text"
+            value={newExamName}
+            onChange={(e) => setNewExamName(e.target.value)}
+            placeholder="Nombre del nuevo examen"
+            className="block w-full px-2 py-1 text-sm border rounded"
+          />
+          <button
+            onClick={handleAddExam}
+            className="p-2 text-green-600 hover:bg-green-50 rounded-full transition-colors"
+          >
+            <PlusCircle className="w-6 h-6" />
+          </button>
+        </div>
+      )}
     </div>
   );
 };

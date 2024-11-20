@@ -1,18 +1,27 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import { Student } from "../types/student";
 import { Edit2, Trash2, GraduationCap, Mail, Calendar } from "lucide-react";
 
 interface StudentCardProps {
   student: Student;
+  courseId: string;
   onEdit: (student: Student) => void;
-  onDelete: (id: string) => void;
+  onDelete: (studentId: string) => void;
 }
 
 export const StudentCard: React.FC<StudentCardProps> = ({
   student,
+  courseId,
   onEdit,
   onDelete,
 }) => {
+  const navigate = useNavigate();
+
+  const handleNameClick = () => {
+    navigate(`/course/${courseId}/student/${student.id}`);
+  };
+
   return (
     <div className="bg-white rounded-lg shadow-md overflow-hidden transition-transform hover:scale-[1.02] hover:shadow-lg">
       <div className="relative h-48 overflow-hidden">
@@ -22,7 +31,10 @@ export const StudentCard: React.FC<StudentCardProps> = ({
           className="w-full h-full object-cover"
         />
         <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-4">
-          <h3 className="text-white text-xl font-semibold">
+          <h3
+            className="text-white text-xl font-semibold cursor-pointer"
+            onClick={handleNameClick}
+          >
             {student.firstName} {student.lastName}
           </h3>
           <p className="text-white/80">{student.major}</p>
