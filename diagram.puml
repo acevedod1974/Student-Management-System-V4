@@ -1,0 +1,114 @@
+@startuml diagram
+!define RECTANGLE class
+
+RECTANGLE App {
+  +Router
+  +Routes
+}
+
+RECTANGLE Header {
+  +Link
+}
+
+RECTANGLE Dashboard {
+  +CourseCard
+  +CourseOverviewChart
+  +DataManagement
+}
+
+RECTANGLE CoursePage {
+  +GradesTable
+  +CourseStats
+  +GradeDistributionChart
+  +ExamPerformanceChart
+  +StudentForm
+}
+
+RECTANGLE StudentDetailPage {
+  +GradesTable
+  +ExamPerformanceChart
+}
+
+RECTANGLE CourseCard {
+  +Link
+}
+
+RECTANGLE CourseOverviewChart {
+  +BarChart
+}
+
+RECTANGLE DataManagement {
+  +handleExport
+  +handleImport
+}
+
+RECTANGLE GradesTable {
+  +handleEditStart
+  +handleEditSave
+  +handleAddExam
+  +handleDeleteExam
+}
+
+RECTANGLE CourseStats {
+  +calculateStats
+}
+
+RECTANGLE GradeDistributionChart {
+  +PieChart
+}
+
+RECTANGLE ExamPerformanceChart {
+  +LineChart
+}
+
+RECTANGLE StudentForm {
+  +handleSubmit
+}
+
+RECTANGLE useCourseStore {
+  +addCourse
+  +deleteCourse
+  +addStudent
+  +deleteStudent
+  +updateGrade
+  +updateStudent
+  +updateExamDescription
+  +addExam
+  +deleteExam
+  +updateExamMaxScore
+}
+
+RECTANGLE useStudentStore {
+  +addStudent
+  +updateStudent
+  +deleteStudent
+  +exportData
+  +importData
+}
+
+App --> Header
+App --> Dashboard
+App --> CoursePage
+App --> StudentDetailPage
+
+Dashboard --> CourseCard
+Dashboard --> CourseOverviewChart
+Dashboard --> DataManagement
+
+CoursePage --> GradesTable
+CoursePage --> CourseStats
+CoursePage --> GradeDistributionChart
+CoursePage --> ExamPerformanceChart
+CoursePage --> StudentForm
+
+StudentDetailPage --> GradesTable
+StudentDetailPage --> ExamPerformanceChart
+
+GradesTable --> useCourseStore
+CourseStats --> useCourseStore
+GradeDistributionChart --> useCourseStore
+ExamPerformanceChart --> useCourseStore
+StudentForm --> useCourseStore
+
+DataManagement --> useStudentStore
+@enduml
