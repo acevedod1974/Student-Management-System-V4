@@ -180,7 +180,7 @@ export const GradesTable: React.FC<GradesTableProps> = ({
 
   return (
     <div className="overflow-x-auto">
-      <table className="min-w-full bg-white border border-gray-200">
+      <table className="min-w-full bg-white border border-gray-200 rounded-lg shadow-md">
         <thead>
           <tr className="bg-gray-50">
             <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
