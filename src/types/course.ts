@@ -22,6 +22,7 @@ export interface Student {
 export interface Course {
   id: string;
   name: string;
+  bannerImage?: string; // Added bannerImage property
   students: Student[];
   exams: Exam[];
 }

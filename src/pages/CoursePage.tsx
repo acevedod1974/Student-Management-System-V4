@@ -7,36 +7,17 @@ import { GradeDistributionChart } from "../components/GradeDistributionChart";
 import { ExamPerformanceChart } from "../components/ExamPerformanceChart";
 import { StudentForm } from "../components/StudentForm";
 import { useCourseStore } from "../store/useCourseStore";
-import pf1 from "../images/pf1.jpg";
-import pf2 from "../images/pf2.jpg";
 
 export const CoursePage: React.FC = () => {
-  const [showAddStudent, setShowAddStudent] = useState(false);
   const { courseId } = useParams();
-  const { courses, addStudent } = useCourseStore();
+  const [showAddStudent, setShowAddStudent] = useState(false);
+  const { courses, addStudent, deleteStudent } = useCourseStore();
   const course = courses.find((c) => c.id === courseId);
+  const bannerImage = course?.bannerImage; // Assuming bannerImage is a property of course
 
   if (!course) {
     return <Navigate to="/" replace />;
   }
-
-  const getBannerImage = (courseName: string) => {
-    switch (courseName) {
-      case "Procesos de Fabricacion 1":
-        return pf1;
-      case "Procesos de Fabricacion 2":
-        return pf2;
-      default:
-        return null;
-    }
-  };
-
-  const bannerImage = getBannerImage(course.name);
-
-  const handleDeleteStudent = (studentId: string) => {
-    // Implement the logic to delete a student from the course
-    console.log(`Deleting student with id: ${studentId}`);
-  };
 
   return (
     <div className="space-y-8 font-sans">
@@ -91,7 +72,9 @@ export const CoursePage: React.FC = () => {
           <div className="p-6">
             <GradesTable
               course={course}
-              onDeleteStudent={handleDeleteStudent}
+              onDeleteStudent={(studentId) =>
+                deleteStudent(course.id, studentId)
+              }
             />
           </div>
         </div>
