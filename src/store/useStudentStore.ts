@@ -9,6 +9,8 @@ interface StudentStore {
   addStudent: (student: Omit<Student, "id">) => void;
   updateStudent: (id: string, student: Partial<Student>) => void;
   deleteStudent: (id: string) => void;
+  exportData: () => string;
+  importData: (jsonData: string) => void;
 }
 
 // Helper function to generate a unique student ID
@@ -17,7 +19,7 @@ const generateStudentId = (): string => {
 };
 
 // Create the Zustand store
-export const useStudentStore = create<StudentStore>((set) => ({
+export const useStudentStore = create<StudentStore>((set, get) => ({
   students: [
     {
       id: "12345678",
@@ -58,4 +60,17 @@ export const useStudentStore = create<StudentStore>((set) => ({
     set((state) => ({
       students: state.students.filter((student) => student.id !== id),
     })),
+  // Export data as JSON string
+  exportData: () =>
+    JSON.stringify(
+      get().students,
+      (key, value) => (key === "id" ? undefined : value),
+      2
+    ),
+
+  // Import data from JSON string
+  importData: (jsonData) => {
+    const importedStudents = JSON.parse(jsonData);
+    set({ students: importedStudents });
+  },
 }));
