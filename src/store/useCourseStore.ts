@@ -2,6 +2,7 @@ import { create } from "zustand";
 import { persist } from "zustand/middleware";
 import { Course, Student } from "../types/course";
 
+// Define the CourseStore interface
 interface CourseStore {
   courses: Course[];
   selectedCourse: string | null;
@@ -41,22 +42,29 @@ interface CourseStore {
   deleteCourse: (courseId: string) => void;
 }
 
+// Helper function to calculate the final grade
 const calculateFinalGrade = (grades: { score: number }[]): number => {
   if (grades.length === 0) return 0;
   const totalScore = grades.reduce((acc, grade) => acc + grade.score, 0);
-  return Number(totalScore.toFixed(1));
+  return Number((totalScore / grades.length).toFixed(1));
 };
 
+// Helper function to generate a unique student ID
 const generateStudentId = (): string => {
   return Math.floor(10000000 + Math.random() * 90000000).toString();
 };
 
+// Create the Zustand store with persistence
 export const useCourseStore = create<CourseStore>()(
   persist(
     (set, get) => ({
       courses: [],
       selectedCourse: null,
+
+      // Set the selected course
       setSelectedCourse: (courseId) => set({ selectedCourse: courseId }),
+
+      // Add a new student to a course
       addStudent: (courseId, studentData) =>
         set((state) => {
           const course = state.courses.find((c) => c.id === courseId);
@@ -85,6 +93,8 @@ export const useCourseStore = create<CourseStore>()(
             ),
           };
         }),
+
+      // Delete a student from a course
       deleteStudent: (courseId, studentId) =>
         set((state) => ({
           courses: state.courses.map((course) =>
@@ -96,6 +106,8 @@ export const useCourseStore = create<CourseStore>()(
               : course
           ),
         })),
+
+      // Update a student's grade
       updateGrade: (courseId, studentId, gradeId, newScore) =>
         set((state) => ({
           courses: state.courses.map((course) =>
@@ -125,6 +137,8 @@ export const useCourseStore = create<CourseStore>()(
               : course
           ),
         })),
+
+      // Update a student's information
       updateStudent: (courseId, studentId, updates) =>
         set((state) => ({
           courses: state.courses.map((course) =>
@@ -140,7 +154,11 @@ export const useCourseStore = create<CourseStore>()(
               : course
           ),
         })),
+
+      // Export course data as JSON
       exportData: () => JSON.stringify(get().courses, null, 2),
+
+      // Import course data from JSON
       importData: (jsonData) => {
         try {
           const courses = JSON.parse(jsonData);
@@ -151,12 +169,16 @@ export const useCourseStore = create<CourseStore>()(
           console.error("Error importing data:", error);
         }
       },
+
+      // Update course information
       updateCourse: (courseId, updates) =>
         set((state) => ({
           courses: state.courses.map((course) =>
             course.id === courseId ? { ...course, ...updates } : course
           ),
         })),
+
+      // Update exam description
       updateExamDescription: (courseId, examIndex, newDescription) =>
         set((state) => ({
           courses: state.courses.map((course) =>
@@ -172,6 +194,8 @@ export const useCourseStore = create<CourseStore>()(
               : course
           ),
         })),
+
+      // Add a new exam to a course
       addExam: (courseId, examName) =>
         set((state) => ({
           courses: state.courses.map((course) =>
@@ -195,6 +219,8 @@ export const useCourseStore = create<CourseStore>()(
               : course
           ),
         })),
+
+      // Delete an exam from a course
       deleteExam: (courseId, examIndex) =>
         set((state) => ({
           courses: state.courses.map((course) =>
@@ -212,6 +238,8 @@ export const useCourseStore = create<CourseStore>()(
               : course
           ),
         })),
+
+      // Update the maximum score for an exam
       updateExamMaxScore: (courseId, examIndex, newMaxScore) =>
         set((state) => ({
           courses: state.courses.map((course) =>
@@ -227,6 +255,8 @@ export const useCourseStore = create<CourseStore>()(
               : course
           ),
         })),
+
+      // Add a new course
       addCourse: (courseData) =>
         set((state) => ({
           courses: [
@@ -237,6 +267,8 @@ export const useCourseStore = create<CourseStore>()(
             },
           ],
         })),
+
+      // Delete a course
       deleteCourse: (courseId) =>
         set((state) => ({
           courses: state.courses.filter((course) => course.id !== courseId),
