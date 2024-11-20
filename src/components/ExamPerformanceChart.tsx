@@ -11,13 +11,14 @@ import {
 } from "recharts";
 import { Course, Student } from "../types/course";
 
-type ExamPerformanceChartProps = {
+interface ExamPerformanceChartProps {
   course: Course;
-  student: Student;
-};
+  student?: Student;
+}
 
 export const ExamPerformanceChart: React.FC<ExamPerformanceChartProps> = ({
   course,
+  student,
 }) => {
   const data = course.exams.map((exam, index) => {
     const examGrades = course.students.map(
@@ -28,10 +29,14 @@ export const ExamPerformanceChart: React.FC<ExamPerformanceChartProps> = ({
     const passing = examGrades.filter((grade) => grade >= 6).length;
     const passingPercentage = (passing / examGrades.length) * 100;
 
+    const studentScore = student ? student.grades[index].score : null;
+
     return {
-      name: exam,
+      name: exam.name,
       promedio: Number(average.toFixed(1)),
       aprobados: Number(passingPercentage.toFixed(1)),
+      studentScore:
+        studentScore !== null ? Number(studentScore.toFixed(1)) : null,
     };
   });
 
@@ -60,6 +65,16 @@ export const ExamPerformanceChart: React.FC<ExamPerformanceChartProps> = ({
           stroke="#10b981"
           strokeWidth={2}
         />
+        {student && (
+          <Line
+            yAxisId="left"
+            type="monotone"
+            dataKey="studentScore"
+            name={`${student.firstName} ${student.lastName}`}
+            stroke="#ff7300"
+            strokeWidth={2}
+          />
+        )}
       </LineChart>
     </ResponsiveContainer>
   );

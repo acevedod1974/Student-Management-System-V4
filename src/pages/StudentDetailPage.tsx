@@ -15,9 +15,9 @@ export const StudentDetailPage: React.FC = () => {
   }
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-8 font-sans">
       <div className="container mx-auto p-4">
-        <h1 className="text-2xl font-bold text-gray-900">
+        <h1 className="text-3xl font-bold text-gray-900">
           {student.firstName} {student.lastName}
         </h1>
         <div className="bg-white rounded-lg shadow p-6">

@@ -8,7 +8,7 @@ function App() {
   return (
     <Router>
       <Header />
-      <div className="mt-8">
+      <div className="mt-8 font-sans">
         <Routes>
           <Route path="/" element={<Dashboard />} />
           <Route path="/course/:courseId" element={<CoursePage />} />
