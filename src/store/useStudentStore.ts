@@ -1,6 +1,7 @@
 import { create } from "zustand";
 import { Student } from "../types/student";
 
+// Define the StudentStore interface
 interface StudentStore {
   students: Student[];
   searchQuery: string;
@@ -10,6 +11,12 @@ interface StudentStore {
   deleteStudent: (id: string) => void;
 }
 
+// Helper function to generate a unique student ID
+const generateStudentId = (): string => {
+  return Math.floor(10000000 + Math.random() * 90000000).toString();
+};
+
+// Create the Zustand store
 export const useStudentStore = create<StudentStore>((set) => ({
   students: [
     {
@@ -19,33 +26,34 @@ export const useStudentStore = create<StudentStore>((set) => ({
       email: "john.doe@example.com",
       dateOfBirth: "1999-05-15",
       grade: "Senior",
-      profileImage:
-        "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7",
-      major: "Computer Science",
-      gpa: 3.8,
-      enrollmentDate: "2020-09-01",
-      status: "active",
     },
-    // Add more sample students here
   ],
   searchQuery: "",
+
+  // Set the search query
   setSearchQuery: (query) => set({ searchQuery: query }),
-  addStudent: (student) =>
+
+  // Add a new student
+  addStudent: (studentData) =>
     set((state) => ({
       students: [
         ...state.students,
         {
-          ...student,
-          id: String(Math.floor(10000000 + Math.random() * 90000000)),
+          id: generateStudentId(),
+          ...studentData,
         },
       ],
     })),
+
+  // Update a student's information
   updateStudent: (id, updatedStudent) =>
     set((state) => ({
       students: state.students.map((student) =>
         student.id === id ? { ...student, ...updatedStudent } : student
       ),
     })),
+
+  // Delete a student
   deleteStudent: (id) =>
     set((state) => ({
       students: state.students.filter((student) => student.id !== id),

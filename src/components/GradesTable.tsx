@@ -273,7 +273,9 @@ export const GradesTable: React.FC<GradesTableProps> = ({
                 return (
                   <td
                     key={grade.id}
-                    className="px-6 py-4 whitespace-nowrap text-gray-900"
+                    className={`px-6 py-4 whitespace-nowrap ${
+                      isPassing ? "bg-green-100" : "bg-red-100"
+                    }`}
                   >
                     {editingCell?.studentId === student.id &&
                     editingCell?.gradeId === grade.id ? (
