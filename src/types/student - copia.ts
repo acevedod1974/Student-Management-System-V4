@@ -20,9 +20,6 @@
  * This project is licensed under the MIT License. See the LICENSE file for more details.
  */
 
-/**
- * Represents a student with personal and academic information.
- */
 export interface Student {
   id: string; // Numeric ID of 8 digits
   firstName: string; // First name of the student
@@ -30,9 +27,5 @@ export interface Student {
   email: string; // Email address of the student
   dateOfBirth: string; // Date of birth of the student
   grade: string; // Academic grade of the student
-  profileImage?: string; // URL of the student's profile image (optional)
-  major?: string; // Major of the student (optional)
-  gpa?: number; // GPA of the student (optional)
-  enrollmentDate?: string; // Enrollment date of the student (optional)
-  status?: string; // Status of the student (optional)
+  //profileImage: string; // URL of the student's profile image
 }

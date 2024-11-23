@@ -1,10 +1,10 @@
 /**
  * @fileoverview
  * Student Management System
- *
+ * 
  * Description: The Student Management System is a comprehensive web application designed to manage student data efficiently.
  * Built with modern web technologies, this system offers a robust and user-friendly interface for managing courses, students, and their performance.
- *
+ * 
  * Technologies Used:
  * - React
  * - TypeScript
@@ -75,10 +75,7 @@ export const StudentCard: React.FC<StudentCardProps> = ({
         <div className="flex items-center gap-2 text-gray-600 mb-4">
           <Calendar className="w-4 h-4" />
           <span className="text-sm">
-            Enrolled:{" "}
-            {student.enrollmentDate
-              ? new Date(student.enrollmentDate).toLocaleDateString()
-              : "N/A"}
+            Enrolled: {new Date(student.enrollmentDate).toLocaleDateString()}
           </span>
         </div>
 
@@ -92,8 +89,7 @@ export const StudentCard: React.FC<StudentCardProps> = ({
                 : "bg-gray-100 text-gray-800"
             }`}
           >
-            {(student.status ?? "unknown").charAt(0).toUpperCase() +
-              (student.status ?? "unknown").slice(1)}
+            {student.status.charAt(0).toUpperCase() + student.status.slice(1)}
           </span>
           <div className="flex gap-2">
             <button
