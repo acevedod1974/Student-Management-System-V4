@@ -7,7 +7,6 @@ import { GradeDistributionChart } from "../components/GradeDistributionChart";
 import { ExamPerformanceChart } from "../components/ExamPerformanceChart";
 import { StudentForm } from "../components/StudentForm";
 import { useCourseStore } from "../store/useCourseStore";
-import { deleteStudent, addStudent } from "../actions/studentActions"; // Adjust the import path as necessary
 import { Link } from "react-router-dom";
 import { CourseCard } from "../components/CourseCard";
 import { CourseOverviewChart } from "../components/CourseOverviewChart";
@@ -36,8 +35,10 @@ export const CoursePage: React.FC = () => {
   // State to manage the course name input for editing
   const [courseName, setCourseName] = useState("");
 
-  // Retrieve the updateCourse function from the Zustand store
+  // Retrieve the updateCourse, addStudent, and deleteStudent functions from the Zustand store
   const updateCourse = useCourseStore((state) => state.updateCourse);
+  const addStudent = useCourseStore((state) => state.addStudent);
+  const deleteStudent = useCourseStore((state) => state.deleteStudent);
 
   // Retrieve the specific course based on the URL parameter
   const course = useCourseStore((state) =>
