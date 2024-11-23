@@ -1,10 +1,10 @@
 /**
  * @fileoverview
  * Student Management System
- * 
+ *
  * Description: The Student Management System is a comprehensive web application designed to manage student data efficiently.
  * Built with modern web technologies, this system offers a robust and user-friendly interface for managing courses, students, and their performance.
- * 
+ *
  * Technologies Used:
  * - React
  * - TypeScript
@@ -20,12 +20,20 @@
  * This project is licensed under the MIT License. See the LICENSE file for more details.
  */
 
-import { StrictMode } from 'react';
-import { createRoot } from 'react-dom/client';
-import App from './App.tsx';
-import './index.css';
+import { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
+import App from "./App.tsx";
+import "./index.css";
 
-createRoot(document.getElementById('root')!).render(
+/**
+ * Main entry point of the application.
+ *
+ * This file sets up the React application and renders the root component (App) into the DOM.
+ * It uses React's StrictMode to help identify potential problems in the application.
+ *
+ * @returns {void}
+ */
+createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <App />
   </StrictMode>
