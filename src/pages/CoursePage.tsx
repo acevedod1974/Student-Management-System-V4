@@ -18,6 +18,9 @@ import { DataManagement } from "../components/DataManagement";
 export const CoursePage: React.FC = () => {
   const { courseId } = useParams();
   const [showAddStudent, setShowAddStudent] = useState(false);
+  const [showEditCourse, setShowEditCourse] = useState(false);
+  const [courseName, setCourseName] = useState("");
+  const updateCourse = useCourseStore((state) => state.updateCourse);
   const { courses, addStudent, deleteStudent } = useCourseStore();
   const course = courses.find((c) => c.id === courseId);
   const bannerImage = course?.bannerImage; // Assuming bannerImage is a property of course
@@ -25,6 +28,17 @@ export const CoursePage: React.FC = () => {
   if (!course) {
     return <Navigate to="/" replace />;
   }
+
+  const handleEditCourse = () => {
+    setCourseName(course.name);
+    setShowEditCourse(true);
+  };
+
+  const handleSaveCourse = () => {
+    updateCourse(course.id, { name: courseName });
+    setShowEditCourse(false);
+    toast.success("Curso actualizado exitosamente");
+  };
 
   return (
     <div className="space-y-8 font-sans">
@@ -47,11 +61,42 @@ export const CoursePage: React.FC = () => {
             <UserPlus className="w-4 h-4" />
             Agregar Estudiante
           </button>
-          <button className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-md hover:bg-blue-700">
+          <button
+            onClick={handleEditCourse}
+            className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-md hover:bg-blue-700"
+          >
             <Edit2 className="w-4 h-4" />
             Editar Curso
           </button>
         </div>
+
+        {showEditCourse && (
+          <div className="fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-50">
+            <div className="bg-white rounded-lg w-full max-w-md p-6">
+              <h2 className="text-xl font-semibold mb-4">Editar Curso</h2>
+              <input
+                type="text"
+                value={courseName}
+                onChange={(e) => setCourseName(e.target.value)}
+                className="block w-full px-2 py-1 text-sm border rounded mb-4"
+              />
+              <div className="flex justify-end gap-2">
+                <button
+                  onClick={() => setShowEditCourse(false)}
+                  className="px-4 py-2 text-sm font-medium text-gray-700 bg-gray-200 rounded-md hover:bg-gray-300"
+                >
+                  Cancelar
+                </button>
+                <button
+                  onClick={handleSaveCourse}
+                  className="px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-md hover:bg-blue-700"
+                >
+                  Guardar
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           <CourseStats course={course} />
