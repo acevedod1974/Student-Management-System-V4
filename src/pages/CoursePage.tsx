@@ -7,6 +7,7 @@ import { GradeDistributionChart } from "../components/GradeDistributionChart";
 import { ExamPerformanceChart } from "../components/ExamPerformanceChart";
 import { StudentForm } from "../components/StudentForm";
 import { useCourseStore } from "../store/useCourseStore";
+import { deleteStudent, addStudent } from "../actions/studentActions"; // Adjust the import path as necessary
 import { Link } from "react-router-dom";
 import { CourseCard } from "../components/CourseCard";
 import { CourseOverviewChart } from "../components/CourseOverviewChart";
@@ -15,25 +16,46 @@ import toast from "react-hot-toast";
 import { confirmAction } from "../utils/confirmAction";
 import { DataManagement } from "../components/DataManagement";
 
+/**
+ * CoursePage Component
+ *
+ * This component displays detailed information about a specific course,
+ * including student grades, course statistics, grade distribution, and exam performance.
+ * It also allows adding new students and editing course details.
+ */
 export const CoursePage: React.FC = () => {
+  // Extract courseId from the URL parameters
   const { courseId } = useParams();
-  const [showAddStudent, setShowAddStudent] = useState(false);
-  const [showEditCourse, setShowEditCourse] = useState(false);
-  const [courseName, setCourseName] = useState("");
-  const updateCourse = useCourseStore((state) => state.updateCourse);
-  const { courses, addStudent, deleteStudent } = useCourseStore();
-  const course = courses.find((c) => c.id === courseId);
-  const bannerImage = course?.bannerImage; // Assuming bannerImage is a property of course
 
+  // State to manage the visibility of the add student form/modal
+  const [showAddStudent, setShowAddStudent] = useState(false);
+
+  // State to manage the visibility of the edit course form/modal
+  const [showEditCourse, setShowEditCourse] = useState(false);
+
+  // State to manage the course name input for editing
+  const [courseName, setCourseName] = useState("");
+
+  // Retrieve the updateCourse function from the Zustand store
+  const updateCourse = useCourseStore((state) => state.updateCourse);
+
+  // Retrieve the specific course based on the URL parameter
+  const course = useCourseStore((state) =>
+    state.courses.find((course) => course.id === courseId)
+  );
+
+  // Handle the case where the course is not found
   if (!course) {
-    return <Navigate to="/" replace />;
+    return <Navigate to="/" />;
   }
 
+  // Function to handle the edit course button click
   const handleEditCourse = () => {
     setCourseName(course.name);
     setShowEditCourse(true);
   };
 
+  // Function to handle saving the edited course details
   const handleSaveCourse = () => {
     updateCourse(course.id, { name: courseName });
     setShowEditCourse(false);
@@ -43,10 +65,10 @@ export const CoursePage: React.FC = () => {
   return (
     <div className="space-y-8 font-sans">
       <div className="container mx-auto p-4">
-        {bannerImage && (
+        {course.bannerImage && (
           <div className="mb-4">
             <img
-              src={bannerImage}
+              src={course.bannerImage}
               alt={course.name}
               className="w-full h-64 object-cover rounded-lg shadow-md"
             />

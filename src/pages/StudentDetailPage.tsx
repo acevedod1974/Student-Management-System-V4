@@ -5,14 +5,29 @@ import { ExamPerformanceChart } from "../components/ExamPerformanceChart";
 import { GradesTable } from "../components/GradesTable";
 import toast from "react-hot-toast";
 
+/**
+ * StudentDetailPage Component
+ *
+ * This component displays detailed information about a specific student,
+ * including their grades and exam performance. It also allows editing
+ * the student's details.
+ */
 export const StudentDetailPage: React.FC = () => {
+  // Extract courseId and studentId from the URL parameters
   const { courseId, studentId } = useParams();
+
+  // Retrieve courses and updateStudent function from the Zustand store
   const courses = useCourseStore((state) => state.courses);
   const updateStudent = useCourseStore((state) => state.updateStudent);
+
+  // Find the specific course and student based on the URL parameters
   const course = courses.find((c) => c.id === courseId);
   const student = course?.students.find((s) => s.id === studentId);
 
+  // State to manage the visibility of the edit student form/modal
   const [showEditStudent, setShowEditStudent] = useState(false);
+
+  // State to manage the form data for editing the student
   const [formData, setFormData] = useState({
     firstName: student?.firstName || "",
     lastName: student?.lastName || "",
@@ -20,14 +35,17 @@ export const StudentDetailPage: React.FC = () => {
     finalGrade: student?.finalGrade || 0,
   });
 
+  // Handle the case where the course or student is not found
   if (!course || !student) {
     return <div>Student not found</div>;
   }
 
+  // Function to handle the edit student button click
   const handleEditStudent = () => {
     setShowEditStudent(true);
   };
 
+  // Function to handle saving the edited student details
   const handleSaveStudent = () => {
     updateStudent(course.id, student.id, formData);
     setShowEditStudent(false);

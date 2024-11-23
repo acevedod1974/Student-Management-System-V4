@@ -8,12 +8,22 @@ import toast from "react-hot-toast";
 import { confirmAction } from "../utils/confirmAction";
 import { DataManagement } from "../components/DataManagement";
 
+/**
+ * Dashboard Component
+ *
+ * This component displays an overview of all courses, allows adding new courses,
+ * and provides data management options.
+ */
 export const Dashboard: React.FC = () => {
+  // Retrieve courses and functions to add/delete courses from the Zustand store
   const courses = useCourseStore((state) => state.courses);
   const addCourse = useCourseStore((state) => state.addCourse);
   const deleteCourse = useCourseStore((state) => state.deleteCourse);
+
+  // State to manage the new course name input
   const [newCourseName, setNewCourseName] = useState("");
 
+  // Function to handle adding a new course
   const handleAddCourse = () => {
     if (!newCourseName.trim()) {
       toast.error("El nombre del curso no puede estar vacío");
@@ -24,6 +34,7 @@ export const Dashboard: React.FC = () => {
     toast.success("Curso agregado exitosamente");
   };
 
+  // Function to handle deleting a course
   const handleDeleteCourse = (courseId: string) => {
     if (confirmAction("¿Está seguro de eliminar este curso?")) {
       deleteCourse(courseId);
@@ -35,6 +46,7 @@ export const Dashboard: React.FC = () => {
     <div className="space-y-8">
       <h1 className="text-2xl font-bold text-gray-900">Vista General</h1>
 
+      {/* Display a grid of course cards */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {courses.map((course) => (
           <div key={course.id} className="relative">
@@ -55,6 +67,7 @@ export const Dashboard: React.FC = () => {
         ))}
       </div>
 
+      {/* Form to add a new course */}
       <div className="bg-white rounded-lg shadow p-6">
         <h2 className="text-xl font-semibold mb-4">Agregar Nuevo Curso</h2>
         <div className="flex items-center gap-2">
@@ -74,11 +87,13 @@ export const Dashboard: React.FC = () => {
         </div>
       </div>
 
+      {/* Display a chart comparing courses */}
       <div className="bg-white rounded-lg shadow p-6">
         <h2 className="text-xl font-semibold mb-4">Comparación de Cursos</h2>
         <CourseOverviewChart courses={courses} />
       </div>
 
+      {/* Data management section */}
       <div className="bg-white rounded-lg shadow p-6">
         <h2 className="text-xl font-semibold mb-4">Gestión de Datos</h2>
         <DataManagement />
