@@ -1,10 +1,10 @@
 /**
  * @fileoverview
  * Student Management System
- * 
+ *
  * Description: The Student Management System is a comprehensive web application designed to manage student data efficiently.
  * Built with modern web technologies, this system offers a robust and user-friendly interface for managing courses, students, and their performance.
- * 
+ *
  * Technologies Used:
  * - React
  * - TypeScript
@@ -23,6 +23,13 @@
 import { create } from "zustand";
 import { Student } from "../types/student";
 
+/**
+ * Zustand store for managing student-related state.
+ *
+ * This store includes functions for adding, deleting, and updating students.
+ * It also provides functions for exporting and importing student data.
+ */
+
 // Define the StudentStore interface
 interface StudentStore {
   students: Student[];
@@ -38,13 +45,13 @@ interface StudentStore {
 // Helper function to generate a unique student ID
 /**
  * Function description.
- * 
+ *
  * @param {type} param - Description.
  * @returns {type} Description.
  */
 /**
  * Function description.
- * 
+ *
  * @param {type} param - Description.
  * @returns {type} Description.
  */
@@ -101,18 +108,18 @@ export const useStudentStore = create<StudentStore>((set, get) => ({
   // Import student data from JSON
   importData: (jsonData) => {
     try {
-/**
- * Function description.
- * 
- * @param {type} param - Description.
- * @returns {type} Description.
- */
-/**
- * Function description.
- * 
- * @param {type} param - Description.
- * @returns {type} Description.
- */
+      /**
+       * Function description.
+       *
+       * @param {type} param - Description.
+       * @returns {type} Description.
+       */
+      /**
+       * Function description.
+       *
+       * @param {type} param - Description.
+       * @returns {type} Description.
+       */
       const students = JSON.parse(jsonData);
       if (Array.isArray(students)) {
         set({ students });
