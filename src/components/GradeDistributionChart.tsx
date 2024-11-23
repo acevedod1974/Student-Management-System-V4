@@ -42,6 +42,12 @@ export const GradeDistributionChart: React.FC<GradeDistributionChartProps> = ({ 
  * @param {type} param - Description.
  * @returns {type} Description.
  */
+/**
+ * Function description.
+ * 
+ * @param {type} param - Description.
+ * @returns {type} Description.
+ */
   const gradeRanges = [
     { name: '0-2', range: [0, 2], color: '#ef4444' },
     { name: '2-4', range: [2, 4], color: '#f97316' },
@@ -50,6 +56,12 @@ export const GradeDistributionChart: React.FC<GradeDistributionChartProps> = ({ 
     { name: '8-10', range: [8, 10], color: '#3b82f6' },
   ];
 
+/**
+ * Function description.
+ * 
+ * @param {type} param - Description.
+ * @returns {type} Description.
+ */
 /**
  * Function description.
  * 

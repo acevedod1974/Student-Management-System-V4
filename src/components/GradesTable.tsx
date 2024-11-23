@@ -45,6 +45,12 @@ export const GradesTable: React.FC<GradesTableProps> = ({
  * @param {type} param - Description.
  * @returns {type} Description.
  */
+/**
+ * Function description.
+ * 
+ * @param {type} param - Description.
+ * @returns {type} Description.
+ */
   const {
     updateGrade,
     updateStudent,
@@ -59,12 +65,24 @@ export const GradesTable: React.FC<GradesTableProps> = ({
  * @param {type} param - Description.
  * @returns {type} Description.
  */
+/**
+ * Function description.
+ * 
+ * @param {type} param - Description.
+ * @returns {type} Description.
+ */
   const [editingCell, setEditingCell] = useState<{
     studentId: string;
     gradeId: string;
     currentValue: number;
   } | null>(null);
 
+/**
+ * Function description.
+ * 
+ * @param {type} param - Description.
+ * @returns {type} Description.
+ */
 /**
  * Function description.
  * 
@@ -111,6 +129,12 @@ export const GradesTable: React.FC<GradesTableProps> = ({
  * @param {type} param - Description.
  * @returns {type} Description.
  */
+/**
+ * Function description.
+ * 
+ * @param {type} param - Description.
+ * @returns {type} Description.
+ */
   const [newMaxScore, setNewMaxScore] = useState<number>(100);
 
 /**
@@ -119,8 +143,20 @@ export const GradesTable: React.FC<GradesTableProps> = ({
  * @param {type} param - Description.
  * @returns {type} Description.
  */
+/**
+ * Function description.
+ * 
+ * @param {type} param - Description.
+ * @returns {type} Description.
+ */
   const navigate = useNavigate();
 
+/**
+ * Function description.
+ * 
+ * @param {type} param - Description.
+ * @returns {type} Description.
+ */
 /**
  * Function description.
  * 
@@ -174,6 +210,12 @@ export const GradesTable: React.FC<GradesTableProps> = ({
  * @param {type} param - Description.
  * @returns {type} Description.
  */
+/**
+ * Function description.
+ * 
+ * @param {type} param - Description.
+ * @returns {type} Description.
+ */
   const handleEditSave = (
     type: "grade" | "student" | "exam" | "maxScore",
     id: string
@@ -181,6 +223,12 @@ export const GradesTable: React.FC<GradesTableProps> = ({
     switch (type) {
       case "grade":
         if (editingCell) {
+/**
+ * Function description.
+ * 
+ * @param {type} param - Description.
+ * @returns {type} Description.
+ */
 /**
  * Function description.
  * 
@@ -235,6 +283,12 @@ export const GradesTable: React.FC<GradesTableProps> = ({
  * @param {type} param - Description.
  * @returns {type} Description.
  */
+/**
+ * Function description.
+ * 
+ * @param {type} param - Description.
+ * @returns {type} Description.
+ */
   const handleKeyPress = (
     e: React.KeyboardEvent,
     type: "grade" | "student" | "exam" | "maxScore",
@@ -261,6 +315,12 @@ export const GradesTable: React.FC<GradesTableProps> = ({
  * @param {type} param - Description.
  * @returns {type} Description.
  */
+/**
+ * Function description.
+ * 
+ * @param {type} param - Description.
+ * @returns {type} Description.
+ */
   const handleAddExam = () => {
     if (!newExamName.trim()) {
       toast.error("El nombre del examen no puede estar vacío");
@@ -271,6 +331,12 @@ export const GradesTable: React.FC<GradesTableProps> = ({
     toast.success("Examen agregado exitosamente");
   };
 
+/**
+ * Function description.
+ * 
+ * @param {type} param - Description.
+ * @returns {type} Description.
+ */
 /**
  * Function description.
  * 
@@ -290,10 +356,22 @@ export const GradesTable: React.FC<GradesTableProps> = ({
  * @param {type} param - Description.
  * @returns {type} Description.
  */
+/**
+ * Function description.
+ * 
+ * @param {type} param - Description.
+ * @returns {type} Description.
+ */
   const handleNameClick = (studentId: string) => {
     navigate(`/course/${course.id}/student/${studentId}`);
   };
 
+/**
+ * Function description.
+ * 
+ * @param {type} param - Description.
+ * @returns {type} Description.
+ */
 /**
  * Function description.
  * 
@@ -319,6 +397,12 @@ export const GradesTable: React.FC<GradesTableProps> = ({
  * @param {type} param - Description.
  * @returns {type} Description.
  */
+/**
+ * Function description.
+ * 
+ * @param {type} param - Description.
+ * @returns {type} Description.
+ */
                 className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
               >
                 {editingExam === index ? (
@@ -327,6 +411,12 @@ export const GradesTable: React.FC<GradesTableProps> = ({
                     value={newExamDescription}
                     onChange={(e) => setNewExamDescription(e.target.value)}
                     onKeyDown={(e) => handleKeyPress(e, "exam", index)}
+/**
+ * Function description.
+ * 
+ * @param {type} param - Description.
+ * @returns {type} Description.
+ */
 /**
  * Function description.
  * 
@@ -347,6 +437,12 @@ export const GradesTable: React.FC<GradesTableProps> = ({
  * @param {type} param - Description.
  * @returns {type} Description.
  */
+/**
+ * Function description.
+ * 
+ * @param {type} param - Description.
+ * @returns {type} Description.
+ */
                     className="cursor-pointer"
                   >
                     {exam.name}
@@ -354,6 +450,12 @@ export const GradesTable: React.FC<GradesTableProps> = ({
                 )}
                 <button
                   onClick={() => handleDeleteExam(index)}
+/**
+ * Function description.
+ * 
+ * @param {type} param - Description.
+ * @returns {type} Description.
+ */
 /**
  * Function description.
  * 
@@ -377,6 +479,12 @@ export const GradesTable: React.FC<GradesTableProps> = ({
  * @param {type} param - Description.
  * @returns {type} Description.
  */
+/**
+ * Function description.
+ * 
+ * @param {type} param - Description.
+ * @returns {type} Description.
+ */
                     className="block w-full px-2 py-1 text-sm border rounded"
                     autoFocus
                   />
@@ -389,6 +497,12 @@ export const GradesTable: React.FC<GradesTableProps> = ({
                         exam.maxScore
                       )
                     }
+/**
+ * Function description.
+ * 
+ * @param {type} param - Description.
+ * @returns {type} Description.
+ */
 /**
  * Function description.
  * 
@@ -422,6 +536,12 @@ export const GradesTable: React.FC<GradesTableProps> = ({
  * @param {type} param - Description.
  * @returns {type} Description.
  */
+/**
+ * Function description.
+ * 
+ * @param {type} param - Description.
+ * @returns {type} Description.
+ */
                     className="font-medium text-gray-900 cursor-pointer"
                     onClick={() => handleNameClick(student.id)}
                   >
@@ -431,6 +551,12 @@ export const GradesTable: React.FC<GradesTableProps> = ({
                 </div>
               </td>
               {student.grades.map((grade) => {
+/**
+ * Function description.
+ * 
+ * @param {type} param - Description.
+ * @returns {type} Description.
+ */
 /**
  * Function description.
  * 
@@ -453,10 +579,22 @@ export const GradesTable: React.FC<GradesTableProps> = ({
  * @param {type} param - Description.
  * @returns {type} Description.
  */
+/**
+ * Function description.
+ * 
+ * @param {type} param - Description.
+ * @returns {type} Description.
+ */
                 const isPassing = grade.score > maxScore / 2;
                 return (
                   <td
                     key={grade.id}
+/**
+ * Function description.
+ * 
+ * @param {type} param - Description.
+ * @returns {type} Description.
+ */
 /**
  * Function description.
  * 
@@ -489,11 +627,23 @@ export const GradesTable: React.FC<GradesTableProps> = ({
  * @param {type} param - Description.
  * @returns {type} Description.
  */
+/**
+ * Function description.
+ * 
+ * @param {type} param - Description.
+ * @returns {type} Description.
+ */
                           className="w-20 px-2 py-1 border rounded"
                           autoFocus
                         />
                         <button
                           onClick={() => handleEditSave("grade", student.id)}
+/**
+ * Function description.
+ * 
+ * @param {type} param - Description.
+ * @returns {type} Description.
+ */
 /**
  * Function description.
  * 
@@ -507,6 +657,12 @@ export const GradesTable: React.FC<GradesTableProps> = ({
                       </div>
                     ) : (
                       <span
+/**
+ * Function description.
+ * 
+ * @param {type} param - Description.
+ * @returns {type} Description.
+ */
 /**
  * Function description.
  * 
@@ -539,6 +695,12 @@ export const GradesTable: React.FC<GradesTableProps> = ({
  * @param {type} param - Description.
  * @returns {type} Description.
  */
+/**
+ * Function description.
+ * 
+ * @param {type} param - Description.
+ * @returns {type} Description.
+ */
                   className={`font-semibold ${
                     student.finalGrade >
                     course.exams.reduce((acc, exam) => acc + exam.maxScore, 0) /
@@ -559,6 +721,12 @@ export const GradesTable: React.FC<GradesTableProps> = ({
                       onDeleteStudent(student.id);
                     }
                   }}
+/**
+ * Function description.
+ * 
+ * @param {type} param - Description.
+ * @returns {type} Description.
+ */
 /**
  * Function description.
  * 
@@ -587,10 +755,22 @@ export const GradesTable: React.FC<GradesTableProps> = ({
  * @param {type} param - Description.
  * @returns {type} Description.
  */
+/**
+ * Function description.
+ * 
+ * @param {type} param - Description.
+ * @returns {type} Description.
+ */
             className="block w-full px-2 py-1 text-sm border rounded"
           />
           <button
             onClick={handleAddExam}
+/**
+ * Function description.
+ * 
+ * @param {type} param - Description.
+ * @returns {type} Description.
+ */
 /**
  * Function description.
  * 

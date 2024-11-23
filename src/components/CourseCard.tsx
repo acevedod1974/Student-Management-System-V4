@@ -37,6 +37,12 @@ export const CourseCard: React.FC<CourseCardProps> = ({ course, isSelected, onCl
  * @param {type} param - Description.
  * @returns {type} Description.
  */
+/**
+ * Function description.
+ * 
+ * @param {type} param - Description.
+ * @returns {type} Description.
+ */
   const averageGrade = course.students.reduce(
     (acc, student) => acc + student.finalGrade,
     0
@@ -45,6 +51,12 @@ export const CourseCard: React.FC<CourseCardProps> = ({ course, isSelected, onCl
   return (
     <div
       onClick={onClick}
+/**
+ * Function description.
+ * 
+ * @param {type} param - Description.
+ * @returns {type} Description.
+ */
 /**
  * Function description.
  * 

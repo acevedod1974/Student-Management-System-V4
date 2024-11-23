@@ -39,6 +39,12 @@ export const Navigation: React.FC = () => {
  * @param {type} param - Description.
  * @returns {type} Description.
  */
+/**
+ * Function description.
+ * 
+ * @param {type} param - Description.
+ * @returns {type} Description.
+ */
   const courses = useCourseStore((state) => state.courses);
 
   return (
@@ -57,6 +63,12 @@ export const Navigation: React.FC = () => {
               <Link
                 key={course.id}
                 to={`/course/${course.id}`}
+/**
+ * Function description.
+ * 
+ * @param {type} param - Description.
+ * @returns {type} Description.
+ */
 /**
  * Function description.
  * 

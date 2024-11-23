@@ -42,6 +42,12 @@ interface StudentStore {
  * @param {type} param - Description.
  * @returns {type} Description.
  */
+/**
+ * Function description.
+ * 
+ * @param {type} param - Description.
+ * @returns {type} Description.
+ */
 const generateStudentId = (): string => {
   return Math.floor(10000000 + Math.random() * 90000000).toString();
 };
@@ -95,6 +101,12 @@ export const useStudentStore = create<StudentStore>((set, get) => ({
   // Import student data from JSON
   importData: (jsonData) => {
     try {
+/**
+ * Function description.
+ * 
+ * @param {type} param - Description.
+ * @returns {type} Description.
+ */
 /**
  * Function description.
  * 

@@ -51,11 +51,23 @@ export const CourseOverviewChart: React.FC<CourseOverviewChartProps> = ({ course
  * @param {type} param - Description.
  * @returns {type} Description.
  */
+/**
+ * Function description.
+ * 
+ * @param {type} param - Description.
+ * @returns {type} Description.
+ */
     const averageGrade = course.students.reduce(
       (acc, student) => acc + student.finalGrade,
       0
     ) / course.students.length;
 
+/**
+ * Function description.
+ * 
+ * @param {type} param - Description.
+ * @returns {type} Description.
+ */
 /**
  * Function description.
  * 

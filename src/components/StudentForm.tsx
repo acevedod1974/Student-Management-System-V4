@@ -49,6 +49,12 @@ export const StudentForm: React.FC<StudentFormProps> = ({
  * @param {type} param - Description.
  * @returns {type} Description.
  */
+/**
+ * Function description.
+ * 
+ * @param {type} param - Description.
+ * @returns {type} Description.
+ */
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -56,6 +62,12 @@ export const StudentForm: React.FC<StudentFormProps> = ({
     finalGrade: 0,
   });
 
+/**
+ * Function description.
+ * 
+ * @param {type} param - Description.
+ * @returns {type} Description.
+ */
 /**
  * Function description.
  * 
@@ -86,6 +98,12 @@ export const StudentForm: React.FC<StudentFormProps> = ({
  * @param {type} param - Description.
  * @returns {type} Description.
  */
+/**
+ * Function description.
+ * 
+ * @param {type} param - Description.
+ * @returns {type} Description.
+ */
             className="p-2 hover:bg-gray-100 rounded-full transition-colors"
           >
             <X className="w-5 h-5" />
@@ -104,6 +122,12 @@ export const StudentForm: React.FC<StudentFormProps> = ({
               onChange={(e) =>
                 setFormData({ ...formData, firstName: e.target.value })
               }
+/**
+ * Function description.
+ * 
+ * @param {type} param - Description.
+ * @returns {type} Description.
+ */
 /**
  * Function description.
  * 
@@ -131,6 +155,12 @@ export const StudentForm: React.FC<StudentFormProps> = ({
  * @param {type} param - Description.
  * @returns {type} Description.
  */
+/**
+ * Function description.
+ * 
+ * @param {type} param - Description.
+ * @returns {type} Description.
+ */
               className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
             />
           </div>
@@ -144,6 +174,12 @@ export const StudentForm: React.FC<StudentFormProps> = ({
               required
               value={formData.id}
               onChange={(e) => setFormData({ ...formData, id: e.target.value })}
+/**
+ * Function description.
+ * 
+ * @param {type} param - Description.
+ * @returns {type} Description.
+ */
 /**
  * Function description.
  * 
@@ -164,12 +200,24 @@ export const StudentForm: React.FC<StudentFormProps> = ({
  * @param {type} param - Description.
  * @returns {type} Description.
  */
+/**
+ * Function description.
+ * 
+ * @param {type} param - Description.
+ * @returns {type} Description.
+ */
               className="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50"
             >
               Cancelar
             </button>
             <button
               type="submit"
+/**
+ * Function description.
+ * 
+ * @param {type} param - Description.
+ * @returns {type} Description.
+ */
 /**
  * Function description.
  * 

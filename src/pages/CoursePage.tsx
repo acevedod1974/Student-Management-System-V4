@@ -52,9 +52,21 @@ export const CoursePage: React.FC = () => {
  * @param {type} param - Description.
  * @returns {type} Description.
  */
+/**
+ * Function description.
+ * 
+ * @param {type} param - Description.
+ * @returns {type} Description.
+ */
   const { courseId } = useParams();
 
   // State to manage the visibility of the add student form/modal
+/**
+ * Function description.
+ * 
+ * @param {type} param - Description.
+ * @returns {type} Description.
+ */
 /**
  * Function description.
  * 
@@ -70,9 +82,21 @@ export const CoursePage: React.FC = () => {
  * @param {type} param - Description.
  * @returns {type} Description.
  */
+/**
+ * Function description.
+ * 
+ * @param {type} param - Description.
+ * @returns {type} Description.
+ */
   const [showEditCourse, setShowEditCourse] = useState(false);
 
   // State to manage the course name input for editing
+/**
+ * Function description.
+ * 
+ * @param {type} param - Description.
+ * @returns {type} Description.
+ */
 /**
  * Function description.
  * 
@@ -102,9 +126,21 @@ export const CoursePage: React.FC = () => {
  * @param {type} param - Description.
  * @returns {type} Description.
  */
+/**
+ * Function description.
+ * 
+ * @param {type} param - Description.
+ * @returns {type} Description.
+ */
   const deleteStudent = useCourseStore((state) => state.deleteStudent);
 
   // Retrieve the specific course based on the URL parameter
+/**
+ * Function description.
+ * 
+ * @param {type} param - Description.
+ * @returns {type} Description.
+ */
 /**
  * Function description.
  * 
@@ -127,12 +163,24 @@ export const CoursePage: React.FC = () => {
  * @param {type} param - Description.
  * @returns {type} Description.
  */
+/**
+ * Function description.
+ * 
+ * @param {type} param - Description.
+ * @returns {type} Description.
+ */
   const handleEditCourse = () => {
     setCourseName(course.name);
     setShowEditCourse(true);
   };
 
   // Function to handle saving the edited course details
+/**
+ * Function description.
+ * 
+ * @param {type} param - Description.
+ * @returns {type} Description.
+ */
 /**
  * Function description.
  * 
@@ -159,6 +207,12 @@ export const CoursePage: React.FC = () => {
  * @param {type} param - Description.
  * @returns {type} Description.
  */
+/**
+ * Function description.
+ * 
+ * @param {type} param - Description.
+ * @returns {type} Description.
+ */
               className="w-full h-64 object-cover rounded-lg shadow-md"
             />
           </div>
@@ -173,6 +227,12 @@ export const CoursePage: React.FC = () => {
  * @param {type} param - Description.
  * @returns {type} Description.
  */
+/**
+ * Function description.
+ * 
+ * @param {type} param - Description.
+ * @returns {type} Description.
+ */
             className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-white bg-green-600 rounded-md hover:bg-green-700"
           >
             <UserPlus className="w-4 h-4" />
@@ -180,6 +240,12 @@ export const CoursePage: React.FC = () => {
           </button>
           <button
             onClick={handleEditCourse}
+/**
+ * Function description.
+ * 
+ * @param {type} param - Description.
+ * @returns {type} Description.
+ */
 /**
  * Function description.
  * 
@@ -207,11 +273,23 @@ export const CoursePage: React.FC = () => {
  * @param {type} param - Description.
  * @returns {type} Description.
  */
+/**
+ * Function description.
+ * 
+ * @param {type} param - Description.
+ * @returns {type} Description.
+ */
                 className="block w-full px-2 py-1 text-sm border rounded mb-4"
               />
               <div className="flex justify-end gap-2">
                 <button
                   onClick={() => setShowEditCourse(false)}
+/**
+ * Function description.
+ * 
+ * @param {type} param - Description.
+ * @returns {type} Description.
+ */
 /**
  * Function description.
  * 
@@ -224,6 +302,12 @@ export const CoursePage: React.FC = () => {
                 </button>
                 <button
                   onClick={handleSaveCourse}
+/**
+ * Function description.
+ * 
+ * @param {type} param - Description.
+ * @returns {type} Description.
+ */
 /**
  * Function description.
  * 
@@ -319,8 +403,20 @@ export const Dashboard: React.FC = () => {
  * @param {type} param - Description.
  * @returns {type} Description.
  */
+/**
+ * Function description.
+ * 
+ * @param {type} param - Description.
+ * @returns {type} Description.
+ */
   const [newCourseName, setNewCourseName] = useState("");
 
+/**
+ * Function description.
+ * 
+ * @param {type} param - Description.
+ * @returns {type} Description.
+ */
 /**
  * Function description.
  * 
@@ -337,6 +433,12 @@ export const Dashboard: React.FC = () => {
     toast.success("Curso agregado exitosamente");
   };
 
+/**
+ * Function description.
+ * 
+ * @param {type} param - Description.
+ * @returns {type} Description.
+ */
 /**
  * Function description.
  * 
@@ -372,6 +474,12 @@ export const Dashboard: React.FC = () => {
  * @param {type} param - Description.
  * @returns {type} Description.
  */
+/**
+ * Function description.
+ * 
+ * @param {type} param - Description.
+ * @returns {type} Description.
+ */
               className="absolute top-2 right-2 p-2 text-red-600 hover:bg-red-50 rounded-full transition-colors"
             >
               <Trash2 className="w-4 h-4" />
@@ -394,10 +502,22 @@ export const Dashboard: React.FC = () => {
  * @param {type} param - Description.
  * @returns {type} Description.
  */
+/**
+ * Function description.
+ * 
+ * @param {type} param - Description.
+ * @returns {type} Description.
+ */
             className="block w-full px-2 py-1 text-sm border rounded"
           />
           <button
             onClick={handleAddCourse}
+/**
+ * Function description.
+ * 
+ * @param {type} param - Description.
+ * @returns {type} Description.
+ */
 /**
  * Function description.
  * 

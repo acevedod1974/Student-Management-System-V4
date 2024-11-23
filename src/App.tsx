@@ -32,6 +32,12 @@ import { Header } from "./components/Header";
  * @param {type} param - Description.
  * @returns {type} Description.
  */
+/**
+ * Function description.
+ * 
+ * @param {type} param - Description.
+ * @returns {type} Description.
+ */
 function App() {
   return (
     <Router>

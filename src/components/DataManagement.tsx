@@ -32,6 +32,12 @@ export const DataManagement: React.FC = () => {
  * @param {type} param - Description.
  * @returns {type} Description.
  */
+/**
+ * Function description.
+ * 
+ * @param {type} param - Description.
+ * @returns {type} Description.
+ */
   const { exportData, importData } = useStudentStore();
 
 /**
@@ -68,6 +74,12 @@ export const DataManagement: React.FC = () => {
  * @param {type} param - Description.
  * @returns {type} Description.
  */
+/**
+ * Function description.
+ * 
+ * @param {type} param - Description.
+ * @returns {type} Description.
+ */
     const a = document.createElement("a");
     a.href = url;
     a.download = `students-data-${new Date().toISOString().split("T")[0]}.json`;
@@ -91,6 +103,12 @@ export const DataManagement: React.FC = () => {
  * @param {type} param - Description.
  * @returns {type} Description.
  */
+/**
+ * Function description.
+ * 
+ * @param {type} param - Description.
+ * @returns {type} Description.
+ */
     const file = event.target.files?.[0];
     if (file) {
 /**
@@ -99,8 +117,20 @@ export const DataManagement: React.FC = () => {
  * @param {type} param - Description.
  * @returns {type} Description.
  */
+/**
+ * Function description.
+ * 
+ * @param {type} param - Description.
+ * @returns {type} Description.
+ */
       const reader = new FileReader();
       reader.onload = (e) => {
+/**
+ * Function description.
+ * 
+ * @param {type} param - Description.
+ * @returns {type} Description.
+ */
 /**
  * Function description.
  * 
@@ -125,6 +155,12 @@ export const DataManagement: React.FC = () => {
  * @param {type} param - Description.
  * @returns {type} Description.
  */
+/**
+ * Function description.
+ * 
+ * @param {type} param - Description.
+ * @returns {type} Description.
+ */
         className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-md hover:bg-blue-700"
       >
         <Download className="w-4 h-4" />
@@ -137,6 +173,12 @@ export const DataManagement: React.FC = () => {
           type="file"
           accept=".json"
           onChange={handleImport}
+/**
+ * Function description.
+ * 
+ * @param {type} param - Description.
+ * @returns {type} Description.
+ */
 /**
  * Function description.
  * 

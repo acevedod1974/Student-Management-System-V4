@@ -51,6 +51,12 @@ export const Dashboard: React.FC = () => {
  * @param {type} param - Description.
  * @returns {type} Description.
  */
+/**
+ * Function description.
+ * 
+ * @param {type} param - Description.
+ * @returns {type} Description.
+ */
   const addCourse = useCourseStore((state) => state.addCourse);
   const deleteCourse = useCourseStore((state) => state.deleteCourse);
 
@@ -58,6 +64,12 @@ export const Dashboard: React.FC = () => {
   const [newCourseName, setNewCourseName] = useState("");
 
   // Function to handle adding a new course
+/**
+ * Function description.
+ * 
+ * @param {type} param - Description.
+ * @returns {type} Description.
+ */
 /**
  * Function description.
  * 
@@ -75,6 +87,12 @@ export const Dashboard: React.FC = () => {
   };
 
   // Function to handle deleting a course
+/**
+ * Function description.
+ * 
+ * @param {type} param - Description.
+ * @returns {type} Description.
+ */
 /**
  * Function description.
  * 
@@ -111,6 +129,12 @@ export const Dashboard: React.FC = () => {
  * @param {type} param - Description.
  * @returns {type} Description.
  */
+/**
+ * Function description.
+ * 
+ * @param {type} param - Description.
+ * @returns {type} Description.
+ */
               className="absolute top-2 right-2 p-2 text-red-600 hover:bg-red-50 rounded-full transition-colors"
             >
               <Trash2 className="w-4 h-4" />
@@ -134,10 +158,22 @@ export const Dashboard: React.FC = () => {
  * @param {type} param - Description.
  * @returns {type} Description.
  */
+/**
+ * Function description.
+ * 
+ * @param {type} param - Description.
+ * @returns {type} Description.
+ */
             className="block w-full px-2 py-1 text-sm border rounded"
           />
           <button
             onClick={handleAddCourse}
+/**
+ * Function description.
+ * 
+ * @param {type} param - Description.
+ * @returns {type} Description.
+ */
 /**
  * Function description.
  * 

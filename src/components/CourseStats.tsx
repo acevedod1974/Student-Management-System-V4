@@ -35,11 +35,23 @@ export const CourseStats: React.FC<CourseStatsProps> = ({ course }) => {
  * @param {type} param - Description.
  * @returns {type} Description.
  */
+/**
+ * Function description.
+ * 
+ * @param {type} param - Description.
+ * @returns {type} Description.
+ */
   const averageGrade = course.students.reduce(
     (acc, student) => acc + student.finalGrade,
     0
   ) / course.students.length;
 
+/**
+ * Function description.
+ * 
+ * @param {type} param - Description.
+ * @returns {type} Description.
+ */
 /**
  * Function description.
  * 
@@ -56,10 +68,22 @@ export const CourseStats: React.FC<CourseStatsProps> = ({ course }) => {
  * @param {type} param - Description.
  * @returns {type} Description.
  */
+/**
+ * Function description.
+ * 
+ * @param {type} param - Description.
+ * @returns {type} Description.
+ */
   const passingStudents = course.students.filter(
     (student) => student.finalGrade >= 6
   ).length;
 
+/**
+ * Function description.
+ * 
+ * @param {type} param - Description.
+ * @returns {type} Description.
+ */
 /**
  * Function description.
  * 

@@ -55,9 +55,21 @@ export const ExamPerformanceChart: React.FC<ExamPerformanceChartProps> = ({
  * @param {type} param - Description.
  * @returns {type} Description.
  */
+/**
+ * Function description.
+ * 
+ * @param {type} param - Description.
+ * @returns {type} Description.
+ */
     const examGrades = course.students.map(
       (student) => student.grades[index].score
     );
+/**
+ * Function description.
+ * 
+ * @param {type} param - Description.
+ * @returns {type} Description.
+ */
 /**
  * Function description.
  * 
@@ -79,8 +91,20 @@ export const ExamPerformanceChart: React.FC<ExamPerformanceChartProps> = ({
  * @param {type} param - Description.
  * @returns {type} Description.
  */
+/**
+ * Function description.
+ * 
+ * @param {type} param - Description.
+ * @returns {type} Description.
+ */
     const passingPercentage = (passing / examGrades.length) * 100;
 
+/**
+ * Function description.
+ * 
+ * @param {type} param - Description.
+ * @returns {type} Description.
+ */
 /**
  * Function description.
  * 

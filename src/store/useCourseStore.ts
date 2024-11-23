@@ -71,8 +71,20 @@ interface CourseStore {
  * @param {type} param - Description.
  * @returns {type} Description.
  */
+/**
+ * Function description.
+ * 
+ * @param {type} param - Description.
+ * @returns {type} Description.
+ */
 const calculateFinalGrade = (grades: { score: number }[]): number => {
   if (grades.length === 0) return 0;
+/**
+ * Function description.
+ * 
+ * @param {type} param - Description.
+ * @returns {type} Description.
+ */
 /**
  * Function description.
  * 
@@ -84,6 +96,12 @@ const calculateFinalGrade = (grades: { score: number }[]): number => {
 };
 
 // Helper function to generate a unique student ID
+/**
+ * Function description.
+ * 
+ * @param {type} param - Description.
+ * @returns {type} Description.
+ */
 /**
  * Function description.
  * 
@@ -113,9 +131,21 @@ export const useCourseStore = create<CourseStore>()(
  * @param {type} param - Description.
  * @returns {type} Description.
  */
+/**
+ * Function description.
+ * 
+ * @param {type} param - Description.
+ * @returns {type} Description.
+ */
           const course = state.courses.find((c) => c.id === courseId);
           if (!course) return state;
 
+/**
+ * Function description.
+ * 
+ * @param {type} param - Description.
+ * @returns {type} Description.
+ */
 /**
  * Function description.
  * 
@@ -129,6 +159,12 @@ export const useCourseStore = create<CourseStore>()(
             maxScore: exam.maxScore,
           }));
 
+/**
+ * Function description.
+ * 
+ * @param {type} param - Description.
+ * @returns {type} Description.
+ */
 /**
  * Function description.
  * 
@@ -219,6 +255,12 @@ export const useCourseStore = create<CourseStore>()(
       // Import course data from JSON
       importData: (jsonData) => {
         try {
+/**
+ * Function description.
+ * 
+ * @param {type} param - Description.
+ * @returns {type} Description.
+ */
 /**
  * Function description.
  * 

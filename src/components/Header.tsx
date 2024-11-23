@@ -36,6 +36,12 @@ export const Header: React.FC = () => {
  * @param {type} param - Description.
  * @returns {type} Description.
  */
+/**
+ * Function description.
+ * 
+ * @param {type} param - Description.
+ * @returns {type} Description.
+ */
           className="text-gray-900 text-3xl font-bold hover:underline flex items-center"
         >
           <Home className="w-8 h-8 mr-2" />
