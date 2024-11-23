@@ -26,7 +26,19 @@ import { GraduationCap } from "lucide-react";
 import { useCourseStore } from "../store/useCourseStore";
 
 export const Navigation: React.FC = () => {
+/**
+ * Function description.
+ * 
+ * @param {type} param - Description.
+ * @returns {type} Description.
+ */
   const location = useLocation();
+/**
+ * Function description.
+ * 
+ * @param {type} param - Description.
+ * @returns {type} Description.
+ */
   const courses = useCourseStore((state) => state.courses);
 
   return (
@@ -45,6 +57,12 @@ export const Navigation: React.FC = () => {
               <Link
                 key={course.id}
                 to={`/course/${course.id}`}
+/**
+ * Function description.
+ * 
+ * @param {type} param - Description.
+ * @returns {type} Description.
+ */
                 className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
                   location.pathname === `/course/${course.id}`
                     ? "bg-blue-50 text-blue-700"

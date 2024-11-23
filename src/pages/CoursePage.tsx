@@ -46,23 +46,71 @@ import { DataManagement } from "../components/DataManagement";
  */
 export const CoursePage: React.FC = () => {
   // Extract courseId from the URL parameters
+/**
+ * Function description.
+ * 
+ * @param {type} param - Description.
+ * @returns {type} Description.
+ */
   const { courseId } = useParams();
 
   // State to manage the visibility of the add student form/modal
+/**
+ * Function description.
+ * 
+ * @param {type} param - Description.
+ * @returns {type} Description.
+ */
   const [showAddStudent, setShowAddStudent] = useState(false);
 
   // State to manage the visibility of the edit course form/modal
+/**
+ * Function description.
+ * 
+ * @param {type} param - Description.
+ * @returns {type} Description.
+ */
   const [showEditCourse, setShowEditCourse] = useState(false);
 
   // State to manage the course name input for editing
+/**
+ * Function description.
+ * 
+ * @param {type} param - Description.
+ * @returns {type} Description.
+ */
   const [courseName, setCourseName] = useState("");
 
   // Retrieve the updateCourse, addStudent, and deleteStudent functions from the Zustand store
+/**
+ * Function description.
+ * 
+ * @param {type} param - Description.
+ * @returns {type} Description.
+ */
   const updateCourse = useCourseStore((state) => state.updateCourse);
+/**
+ * Function description.
+ * 
+ * @param {type} param - Description.
+ * @returns {type} Description.
+ */
   const addStudent = useCourseStore((state) => state.addStudent);
+/**
+ * Function description.
+ * 
+ * @param {type} param - Description.
+ * @returns {type} Description.
+ */
   const deleteStudent = useCourseStore((state) => state.deleteStudent);
 
   // Retrieve the specific course based on the URL parameter
+/**
+ * Function description.
+ * 
+ * @param {type} param - Description.
+ * @returns {type} Description.
+ */
   const course = useCourseStore((state) =>
     state.courses.find((course) => course.id === courseId)
   );
@@ -73,12 +121,24 @@ export const CoursePage: React.FC = () => {
   }
 
   // Function to handle the edit course button click
+/**
+ * Function description.
+ * 
+ * @param {type} param - Description.
+ * @returns {type} Description.
+ */
   const handleEditCourse = () => {
     setCourseName(course.name);
     setShowEditCourse(true);
   };
 
   // Function to handle saving the edited course details
+/**
+ * Function description.
+ * 
+ * @param {type} param - Description.
+ * @returns {type} Description.
+ */
   const handleSaveCourse = () => {
     updateCourse(course.id, { name: courseName });
     setShowEditCourse(false);
@@ -93,6 +153,12 @@ export const CoursePage: React.FC = () => {
             <img
               src={course.bannerImage}
               alt={course.name}
+/**
+ * Function description.
+ * 
+ * @param {type} param - Description.
+ * @returns {type} Description.
+ */
               className="w-full h-64 object-cover rounded-lg shadow-md"
             />
           </div>
@@ -101,6 +167,12 @@ export const CoursePage: React.FC = () => {
         <div className="flex justify-between items-center mt-4">
           <button
             onClick={() => setShowAddStudent(true)}
+/**
+ * Function description.
+ * 
+ * @param {type} param - Description.
+ * @returns {type} Description.
+ */
             className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-white bg-green-600 rounded-md hover:bg-green-700"
           >
             <UserPlus className="w-4 h-4" />
@@ -108,6 +180,12 @@ export const CoursePage: React.FC = () => {
           </button>
           <button
             onClick={handleEditCourse}
+/**
+ * Function description.
+ * 
+ * @param {type} param - Description.
+ * @returns {type} Description.
+ */
             className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-md hover:bg-blue-700"
           >
             <Edit2 className="w-4 h-4" />
@@ -123,17 +201,35 @@ export const CoursePage: React.FC = () => {
                 type="text"
                 value={courseName}
                 onChange={(e) => setCourseName(e.target.value)}
+/**
+ * Function description.
+ * 
+ * @param {type} param - Description.
+ * @returns {type} Description.
+ */
                 className="block w-full px-2 py-1 text-sm border rounded mb-4"
               />
               <div className="flex justify-end gap-2">
                 <button
                   onClick={() => setShowEditCourse(false)}
+/**
+ * Function description.
+ * 
+ * @param {type} param - Description.
+ * @returns {type} Description.
+ */
                   className="px-4 py-2 text-sm font-medium text-gray-700 bg-gray-200 rounded-md hover:bg-gray-300"
                 >
                   Cancelar
                 </button>
                 <button
                   onClick={handleSaveCourse}
+/**
+ * Function description.
+ * 
+ * @param {type} param - Description.
+ * @returns {type} Description.
+ */
                   className="px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-md hover:bg-blue-700"
                 >
                   Guardar
@@ -196,11 +292,41 @@ export const CoursePage: React.FC = () => {
 };
 
 export const Dashboard: React.FC = () => {
+/**
+ * Function description.
+ * 
+ * @param {type} param - Description.
+ * @returns {type} Description.
+ */
   const courses = useCourseStore((state) => state.courses);
+/**
+ * Function description.
+ * 
+ * @param {type} param - Description.
+ * @returns {type} Description.
+ */
   const addCourse = useCourseStore((state) => state.addCourse);
+/**
+ * Function description.
+ * 
+ * @param {type} param - Description.
+ * @returns {type} Description.
+ */
   const deleteCourse = useCourseStore((state) => state.deleteCourse);
+/**
+ * Function description.
+ * 
+ * @param {type} param - Description.
+ * @returns {type} Description.
+ */
   const [newCourseName, setNewCourseName] = useState("");
 
+/**
+ * Function description.
+ * 
+ * @param {type} param - Description.
+ * @returns {type} Description.
+ */
   const handleAddCourse = () => {
     if (!newCourseName.trim()) {
       toast.error("El nombre del curso no puede estar vacío");
@@ -211,6 +337,12 @@ export const Dashboard: React.FC = () => {
     toast.success("Curso agregado exitosamente");
   };
 
+/**
+ * Function description.
+ * 
+ * @param {type} param - Description.
+ * @returns {type} Description.
+ */
   const handleDeleteCourse = (courseId: string) => {
     if (confirmAction("¿Está seguro de eliminar este curso?")) {
       deleteCourse(courseId);
@@ -234,6 +366,12 @@ export const Dashboard: React.FC = () => {
             </Link>
             <button
               onClick={() => handleDeleteCourse(course.id)}
+/**
+ * Function description.
+ * 
+ * @param {type} param - Description.
+ * @returns {type} Description.
+ */
               className="absolute top-2 right-2 p-2 text-red-600 hover:bg-red-50 rounded-full transition-colors"
             >
               <Trash2 className="w-4 h-4" />
@@ -250,10 +388,22 @@ export const Dashboard: React.FC = () => {
             value={newCourseName}
             onChange={(e) => setNewCourseName(e.target.value)}
             placeholder="Nombre del nuevo curso"
+/**
+ * Function description.
+ * 
+ * @param {type} param - Description.
+ * @returns {type} Description.
+ */
             className="block w-full px-2 py-1 text-sm border rounded"
           />
           <button
             onClick={handleAddCourse}
+/**
+ * Function description.
+ * 
+ * @param {type} param - Description.
+ * @returns {type} Description.
+ */
             className="p-2 text-green-600 hover:bg-green-50 rounded-full transition-colors"
           >
             <PlusCircle className="w-6 h-6" />

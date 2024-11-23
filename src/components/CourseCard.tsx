@@ -31,6 +31,12 @@ interface CourseCardProps {
 }
 
 export const CourseCard: React.FC<CourseCardProps> = ({ course, isSelected, onClick }) => {
+/**
+ * Function description.
+ * 
+ * @param {type} param - Description.
+ * @returns {type} Description.
+ */
   const averageGrade = course.students.reduce(
     (acc, student) => acc + student.finalGrade,
     0
@@ -39,6 +45,12 @@ export const CourseCard: React.FC<CourseCardProps> = ({ course, isSelected, onCl
   return (
     <div
       onClick={onClick}
+/**
+ * Function description.
+ * 
+ * @param {type} param - Description.
+ * @returns {type} Description.
+ */
       className={`p-6 rounded-lg cursor-pointer transition-all ${
         isSelected
           ? 'bg-blue-50 border-2 border-blue-500'

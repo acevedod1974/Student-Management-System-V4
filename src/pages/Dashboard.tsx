@@ -38,7 +38,19 @@ import { DataManagement } from "../components/DataManagement";
  */
 export const Dashboard: React.FC = () => {
   // Retrieve courses and functions to add/delete courses from the Zustand store
+/**
+ * Function description.
+ * 
+ * @param {type} param - Description.
+ * @returns {type} Description.
+ */
   const courses = useCourseStore((state) => state.courses);
+/**
+ * Function description.
+ * 
+ * @param {type} param - Description.
+ * @returns {type} Description.
+ */
   const addCourse = useCourseStore((state) => state.addCourse);
   const deleteCourse = useCourseStore((state) => state.deleteCourse);
 
@@ -46,6 +58,12 @@ export const Dashboard: React.FC = () => {
   const [newCourseName, setNewCourseName] = useState("");
 
   // Function to handle adding a new course
+/**
+ * Function description.
+ * 
+ * @param {type} param - Description.
+ * @returns {type} Description.
+ */
   const handleAddCourse = () => {
     if (!newCourseName.trim()) {
       toast.error("El nombre del curso no puede estar vacío");
@@ -57,6 +75,12 @@ export const Dashboard: React.FC = () => {
   };
 
   // Function to handle deleting a course
+/**
+ * Function description.
+ * 
+ * @param {type} param - Description.
+ * @returns {type} Description.
+ */
   const handleDeleteCourse = (courseId: string) => {
     if (confirmAction("¿Está seguro de eliminar este curso?")) {
       deleteCourse(courseId);
@@ -81,6 +105,12 @@ export const Dashboard: React.FC = () => {
             </Link>
             <button
               onClick={() => handleDeleteCourse(course.id)}
+/**
+ * Function description.
+ * 
+ * @param {type} param - Description.
+ * @returns {type} Description.
+ */
               className="absolute top-2 right-2 p-2 text-red-600 hover:bg-red-50 rounded-full transition-colors"
             >
               <Trash2 className="w-4 h-4" />
@@ -98,10 +128,22 @@ export const Dashboard: React.FC = () => {
             value={newCourseName}
             onChange={(e) => setNewCourseName(e.target.value)}
             placeholder="Nombre del nuevo curso"
+/**
+ * Function description.
+ * 
+ * @param {type} param - Description.
+ * @returns {type} Description.
+ */
             className="block w-full px-2 py-1 text-sm border rounded"
           />
           <button
             onClick={handleAddCourse}
+/**
+ * Function description.
+ * 
+ * @param {type} param - Description.
+ * @returns {type} Description.
+ */
             className="p-2 text-green-600 hover:bg-green-50 rounded-full transition-colors"
           >
             <PlusCircle className="w-6 h-6" />

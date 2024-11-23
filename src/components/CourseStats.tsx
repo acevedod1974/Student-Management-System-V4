@@ -29,19 +29,43 @@ interface CourseStatsProps {
 }
 
 export const CourseStats: React.FC<CourseStatsProps> = ({ course }) => {
+/**
+ * Function description.
+ * 
+ * @param {type} param - Description.
+ * @returns {type} Description.
+ */
   const averageGrade = course.students.reduce(
     (acc, student) => acc + student.finalGrade,
     0
   ) / course.students.length;
 
+/**
+ * Function description.
+ * 
+ * @param {type} param - Description.
+ * @returns {type} Description.
+ */
   const highestGrade = Math.max(
     ...course.students.map((student) => student.finalGrade)
   );
 
+/**
+ * Function description.
+ * 
+ * @param {type} param - Description.
+ * @returns {type} Description.
+ */
   const passingStudents = course.students.filter(
     (student) => student.finalGrade >= 6
   ).length;
 
+/**
+ * Function description.
+ * 
+ * @param {type} param - Description.
+ * @returns {type} Description.
+ */
   const stats = [
     {
       label: 'Promedio del Curso',

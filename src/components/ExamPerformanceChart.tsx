@@ -42,15 +42,51 @@ export const ExamPerformanceChart: React.FC<ExamPerformanceChartProps> = ({
   course,
   student,
 }) => {
+/**
+ * Function description.
+ * 
+ * @param {type} param - Description.
+ * @returns {type} Description.
+ */
   const data = course.exams.map((exam, index) => {
+/**
+ * Function description.
+ * 
+ * @param {type} param - Description.
+ * @returns {type} Description.
+ */
     const examGrades = course.students.map(
       (student) => student.grades[index].score
     );
+/**
+ * Function description.
+ * 
+ * @param {type} param - Description.
+ * @returns {type} Description.
+ */
     const average =
       examGrades.reduce((acc, grade) => acc + grade, 0) / examGrades.length;
+/**
+ * Function description.
+ * 
+ * @param {type} param - Description.
+ * @returns {type} Description.
+ */
     const passing = examGrades.filter((grade) => grade >= 6).length;
+/**
+ * Function description.
+ * 
+ * @param {type} param - Description.
+ * @returns {type} Description.
+ */
     const passingPercentage = (passing / examGrades.length) * 100;
 
+/**
+ * Function description.
+ * 
+ * @param {type} param - Description.
+ * @returns {type} Description.
+ */
     const studentScore = student ? student.grades[index].score : null;
 
     return {

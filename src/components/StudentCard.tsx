@@ -1,6 +1,28 @@
 /**
  * @fileoverview
  * Student Management System
+ * 
+ * Description: The Student Management System is a comprehensive web application designed to manage student data efficiently.
+ * Built with modern web technologies, this system offers a robust and user-friendly interface for managing courses, students, and their performance.
+ * 
+ * Technologies Used:
+ * - React
+ * - TypeScript
+ * - Zustand (State Management)
+ * - Tailwind CSS (Styling)
+ * - Vite (Building and Serving)
+ *
+ * Author: Daniel Acevedo Lopez
+ * GitHub: https://github.com/acevedod1974/Student-Management-System-V4
+ *
+ * Copyright © 2023 Daniel Acevedo Lopez. All rights reserved.
+ *
+ * This project is licensed under the MIT License. See the LICENSE file for more details.
+ */
+
+/**
+ * @fileoverview
+ * Student Management System
  *
  * Description: The Student Management System is a comprehensive web application designed to manage student data efficiently.
  * Built with modern web technologies, this system offers a robust and user-friendly interface for managing courses, students, and their performance.
@@ -38,8 +60,20 @@ export const StudentCard: React.FC<StudentCardProps> = ({
   onEdit,
   onDelete,
 }) => {
+/**
+ * Function description.
+ * 
+ * @param {type} param - Description.
+ * @returns {type} Description.
+ */
   const navigate = useNavigate();
 
+/**
+ * Function description.
+ * 
+ * @param {type} param - Description.
+ * @returns {type} Description.
+ */
   const handleNameClick = () => {
     navigate(`/course/${courseId}/student/${student.id}`);
   };
@@ -50,10 +84,22 @@ export const StudentCard: React.FC<StudentCardProps> = ({
         <img
           src={student.profileImage}
           alt={`${student.firstName} ${student.lastName}`}
+/**
+ * Function description.
+ * 
+ * @param {type} param - Description.
+ * @returns {type} Description.
+ */
           className="w-full h-full object-cover"
         />
         <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-4">
           <h3
+/**
+ * Function description.
+ * 
+ * @param {type} param - Description.
+ * @returns {type} Description.
+ */
             className="text-white text-xl font-semibold cursor-pointer"
             onClick={handleNameClick}
           >
@@ -84,6 +130,12 @@ export const StudentCard: React.FC<StudentCardProps> = ({
 
         <div className="flex justify-between items-center mt-4">
           <span
+/**
+ * Function description.
+ * 
+ * @param {type} param - Description.
+ * @returns {type} Description.
+ */
             className={`px-3 py-1 rounded-full text-sm ${
               student.status === "active"
                 ? "bg-green-100 text-green-800"
@@ -98,12 +150,24 @@ export const StudentCard: React.FC<StudentCardProps> = ({
           <div className="flex gap-2">
             <button
               onClick={() => onEdit(student)}
+/**
+ * Function description.
+ * 
+ * @param {type} param - Description.
+ * @returns {type} Description.
+ */
               className="p-2 text-blue-600 hover:bg-blue-50 rounded-full transition-colors"
             >
               <Edit2 className="w-4 h-4" />
             </button>
             <button
               onClick={() => onDelete(student.id)}
+/**
+ * Function description.
+ * 
+ * @param {type} param - Description.
+ * @returns {type} Description.
+ */
               className="p-2 text-red-600 hover:bg-red-50 rounded-full transition-colors"
             >
               <Trash2 className="w-4 h-4" />

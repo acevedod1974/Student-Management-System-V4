@@ -26,6 +26,12 @@ import { CoursePage } from "./pages/CoursePage";
 import { StudentDetailPage } from "./pages/StudentDetailPage";
 import { Header } from "./components/Header";
 
+/**
+ * Function description.
+ * 
+ * @param {type} param - Description.
+ * @returns {type} Description.
+ */
 function App() {
   return (
     <Router>

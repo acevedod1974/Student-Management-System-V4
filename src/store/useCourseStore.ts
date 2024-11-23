@@ -65,13 +65,31 @@ interface CourseStore {
 }
 
 // Helper function to calculate the final grade
+/**
+ * Function description.
+ * 
+ * @param {type} param - Description.
+ * @returns {type} Description.
+ */
 const calculateFinalGrade = (grades: { score: number }[]): number => {
   if (grades.length === 0) return 0;
+/**
+ * Function description.
+ * 
+ * @param {type} param - Description.
+ * @returns {type} Description.
+ */
   const totalScore = grades.reduce((acc, grade) => acc + grade.score, 0);
   return Number((totalScore / grades.length).toFixed(1));
 };
 
 // Helper function to generate a unique student ID
+/**
+ * Function description.
+ * 
+ * @param {type} param - Description.
+ * @returns {type} Description.
+ */
 const generateStudentId = (): string => {
   return Math.floor(10000000 + Math.random() * 90000000).toString();
 };
@@ -89,9 +107,21 @@ export const useCourseStore = create<CourseStore>()(
       // Add a new student to a course
       addStudent: (courseId, studentData) =>
         set((state) => {
+/**
+ * Function description.
+ * 
+ * @param {type} param - Description.
+ * @returns {type} Description.
+ */
           const course = state.courses.find((c) => c.id === courseId);
           if (!course) return state;
 
+/**
+ * Function description.
+ * 
+ * @param {type} param - Description.
+ * @returns {type} Description.
+ */
           const grades = course.exams.map((exam) => ({
             id: `grade-${crypto.randomUUID()}`,
             examName: exam.name,
@@ -99,6 +129,12 @@ export const useCourseStore = create<CourseStore>()(
             maxScore: exam.maxScore,
           }));
 
+/**
+ * Function description.
+ * 
+ * @param {type} param - Description.
+ * @returns {type} Description.
+ */
           const newStudent: Student = {
             id: crypto.randomUUID(),
             ...studentData,
@@ -183,6 +219,12 @@ export const useCourseStore = create<CourseStore>()(
       // Import course data from JSON
       importData: (jsonData) => {
         try {
+/**
+ * Function description.
+ * 
+ * @param {type} param - Description.
+ * @returns {type} Description.
+ */
           const courses = JSON.parse(jsonData);
           if (Array.isArray(courses)) {
             set({ courses });

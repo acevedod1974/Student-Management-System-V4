@@ -26,12 +26,48 @@ import { useStudentStore } from "../store/useStudentStore";
 import toast from "react-hot-toast";
 
 export const DataManagement: React.FC = () => {
+/**
+ * Function description.
+ * 
+ * @param {type} param - Description.
+ * @returns {type} Description.
+ */
   const { exportData, importData } = useStudentStore();
 
+/**
+ * Function description.
+ * 
+ * @param {type} param - Description.
+ * @returns {type} Description.
+ */
   const handleExport = () => {
+/**
+ * Function description.
+ * 
+ * @param {type} param - Description.
+ * @returns {type} Description.
+ */
     const data = exportData();
+/**
+ * Function description.
+ * 
+ * @param {type} param - Description.
+ * @returns {type} Description.
+ */
     const blob = new Blob([data], { type: "application/json" });
+/**
+ * Function description.
+ * 
+ * @param {type} param - Description.
+ * @returns {type} Description.
+ */
     const url = URL.createObjectURL(blob);
+/**
+ * Function description.
+ * 
+ * @param {type} param - Description.
+ * @returns {type} Description.
+ */
     const a = document.createElement("a");
     a.href = url;
     a.download = `students-data-${new Date().toISOString().split("T")[0]}.json`;
@@ -42,11 +78,35 @@ export const DataManagement: React.FC = () => {
     toast.success("Datos exportados exitosamente");
   };
 
+/**
+ * Function description.
+ * 
+ * @param {type} param - Description.
+ * @returns {type} Description.
+ */
   const handleImport = (event: React.ChangeEvent<HTMLInputElement>) => {
+/**
+ * Function description.
+ * 
+ * @param {type} param - Description.
+ * @returns {type} Description.
+ */
     const file = event.target.files?.[0];
     if (file) {
+/**
+ * Function description.
+ * 
+ * @param {type} param - Description.
+ * @returns {type} Description.
+ */
       const reader = new FileReader();
       reader.onload = (e) => {
+/**
+ * Function description.
+ * 
+ * @param {type} param - Description.
+ * @returns {type} Description.
+ */
         const content = e.target?.result as string;
         importData(content);
         toast.success("Datos importados exitosamente");
@@ -59,6 +119,12 @@ export const DataManagement: React.FC = () => {
     <div className="flex gap-4">
       <button
         onClick={handleExport}
+/**
+ * Function description.
+ * 
+ * @param {type} param - Description.
+ * @returns {type} Description.
+ */
         className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-md hover:bg-blue-700"
       >
         <Download className="w-4 h-4" />
@@ -71,6 +137,12 @@ export const DataManagement: React.FC = () => {
           type="file"
           accept=".json"
           onChange={handleImport}
+/**
+ * Function description.
+ * 
+ * @param {type} param - Description.
+ * @returns {type} Description.
+ */
           className="hidden"
         />
       </label>
