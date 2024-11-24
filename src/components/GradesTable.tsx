@@ -383,14 +383,19 @@ export const GradesTable: React.FC<GradesTableProps> = ({
               <td className="px-6 py-4 whitespace-nowrap">
                 <span
                   className={`font-semibold ${
-                    student.finalGrade >
+                    student.grades.reduce(
+                      (acc, grade) => acc + grade.score,
+                      0
+                    ) >
                     course.exams.reduce((acc, exam) => acc + exam.maxScore, 0) /
                       2
                       ? "text-green-800 bg-green-100"
                       : "text-red-800 bg-red-100"
                   } px-2 py-1 rounded`}
                 >
-                  {student.finalGrade.toFixed(1)}
+                  {student.grades
+                    .reduce((acc, grade) => acc + grade.score, 0)
+                    .toFixed(1)}
                 </span>
               </td>
               <td className="px-6 py-4 whitespace-nowrap">
@@ -431,3 +436,5 @@ export const GradesTable: React.FC<GradesTableProps> = ({
     </div>
   );
 };
+
+export default GradesTable;
