@@ -167,7 +167,7 @@ export const GradesTable: React.FC<GradesTableProps> = ({
       case "maxScore":
         updateExamMaxScore(course.id, Number(id), newMaxScore);
         setEditingMaxScore(null);
-        toast.success("Calificación máxima del examen actualizada");
+        toast.success("Puntuación máxima actualizada");
         break;
     }
   };
@@ -267,16 +267,9 @@ export const GradesTable: React.FC<GradesTableProps> = ({
                     {exam.name}
                   </span>
                 )}
-                <button
-                  onClick={() => handleDeleteExam(index)}
-                  className="ml-2 text-red-600 hover:bg-red-50 rounded-full transition-colors"
-                >
-                  <MinusCircle className="w-4 h-4" />
-                </button>
                 {editingMaxScore === index ? (
                   <input
                     type="number"
-                    min="0"
                     value={newMaxScore}
                     onChange={(e) => setNewMaxScore(Number(e.target.value))}
                     onKeyDown={(e) => handleKeyPress(e, "maxScore", index)}
@@ -297,6 +290,12 @@ export const GradesTable: React.FC<GradesTableProps> = ({
                     Max: {exam.maxScore}
                   </span>
                 )}
+                <button
+                  onClick={() => handleDeleteExam(index)}
+                  className="ml-2 text-red-600 hover:bg-red-50 rounded-full transition-colors"
+                >
+                  <MinusCircle className="w-4 h-4" />
+                </button>
               </th>
             ))}
             <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
@@ -313,35 +312,59 @@ export const GradesTable: React.FC<GradesTableProps> = ({
               <td className="px-6 py-4 whitespace-nowrap">
                 <div className="space-y-2">
                   <span
-                    className="font-medium text-gray-900 cursor-pointer"
                     onClick={() => handleNameClick(student.id)}
+                    className="cursor-pointer text-blue-600 hover:underline"
                   >
                     {student.firstName} {student.lastName}
                   </span>
-                  <div className="text-sm text-gray-500">{student.id}</div>
+                  {editingStudent?.id === student.id && (
+                    <div className="flex gap-2">
+                      <input
+                        type="text"
+                        value={editingStudent.firstName}
+                        onChange={(e) =>
+                          setEditingStudent({
+                            ...editingStudent,
+                            firstName: e.target.value,
+                          })
+                        }
+                        onKeyDown={(e) => handleKeyPress(e, "student")}
+                        className="block w-full px-2 py-1 text-sm border rounded"
+                        autoFocus
+                      />
+                      <input
+                        type="text"
+                        value={editingStudent.lastName}
+                        onChange={(e) =>
+                          setEditingStudent({
+                            ...editingStudent,
+                            lastName: e.target.value,
+                          })
+                        }
+                        onKeyDown={(e) => handleKeyPress(e, "student")}
+                        className="block w-full px-2 py-1 text-sm border rounded"
+                      />
+                      <button
+                        onClick={() => handleEditSave("student", student.id)}
+                        className="p-1 text-green-600 hover:bg-green-50 rounded-full transition-colors"
+                      >
+                        <Save className="w-4 h-4" />
+                      </button>
+                    </div>
+                  )}
                 </div>
               </td>
-              {student.grades.map((grade) => {
-                const exam = course.exams.find(
-                  (exam) => exam.name === grade.examName
+              {course.exams.map((exam, index) => {
+                const grade = student.grades.find(
+                  (g) => g.examName === exam.name
                 );
-                const maxScore = exam ? exam.maxScore : 100;
-                const isPassing = grade.score > maxScore / 2;
                 return (
-                  <td
-                    key={grade.id}
-                    className={`px-6 py-4 whitespace-nowrap ${
-                      isPassing ? "bg-green-100" : "bg-red-100"
-                    }`}
-                  >
+                  <td key={exam.name} className="px-6 py-4 whitespace-nowrap">
                     {editingCell?.studentId === student.id &&
-                    editingCell?.gradeId === grade.id ? (
+                    editingCell.gradeId === exam.name ? (
                       <div className="flex items-center gap-2">
                         <input
                           type="number"
-                          min="0"
-                          max={maxScore}
-                          step="1"
                           value={editingCell.currentValue}
                           onChange={(e) =>
                             setEditingCell({
@@ -350,11 +373,11 @@ export const GradesTable: React.FC<GradesTableProps> = ({
                             })
                           }
                           onKeyDown={(e) => handleKeyPress(e, "grade")}
-                          className="w-20 px-2 py-1 border rounded"
+                          className="block w-full px-2 py-1 text-sm border rounded"
                           autoFocus
                         />
                         <button
-                          onClick={() => handleEditSave("grade", student.id)}
+                          onClick={() => handleEditSave("grade", exam.name)}
                           className="p-1 text-green-600 hover:bg-green-50 rounded-full transition-colors"
                         >
                           <Save className="w-4 h-4" />
@@ -362,50 +385,32 @@ export const GradesTable: React.FC<GradesTableProps> = ({
                       </div>
                     ) : (
                       <span
-                        className={`px-2 py-1 rounded cursor-pointer hover:bg-gray-100 ${
-                          isPassing
-                            ? "bg-green-100 text-green-800"
-                            : "bg-red-100 text-red-800"
-                        }`}
                         onClick={() =>
                           handleEditStart("grade", student.id, {
-                            gradeId: grade.id,
-                            currentValue: grade.score,
+                            gradeId: exam.name,
+                            currentValue: grade ? grade.score : 0,
                           })
                         }
+                        className="cursor-pointer"
                       >
-                        {grade.score.toFixed(1)}
+                        {grade ? grade.score : 0}
                       </span>
                     )}
                   </td>
                 );
               })}
               <td className="px-6 py-4 whitespace-nowrap">
-                <span
-                  className={`font-semibold ${
-                    student.finalGrade >
-                    course.exams.reduce((acc, exam) => acc + exam.maxScore, 0) /
-                      2
-                      ? "text-green-800 bg-green-100"
-                      : "text-red-800 bg-red-100"
-                  } px-2 py-1 rounded`}
-                >
-                  {student.finalGrade.toFixed(1)}
-                </span>
+                {student.grades.reduce((acc, grade) => acc + grade.score, 0)}
               </td>
               <td className="px-6 py-4 whitespace-nowrap">
-                <button
-                  onClick={() => {
-                    if (
-                      confirmAction("¿Está seguro de eliminar este estudiante?")
-                    ) {
-                      onDeleteStudent(student.id);
-                    }
-                  }}
-                  className="p-2 text-red-600 hover:bg-red-50 rounded-full transition-colors"
-                >
-                  <Trash2 className="w-4 h-4" />
-                </button>
+                <div className="flex items-center gap-2">
+                  <button
+                    onClick={() => onDeleteStudent(student.id)}
+                    className="p-2 text-red-600 hover:bg-red-50 rounded-full transition-colors"
+                  >
+                    <Trash2 className="w-4 h-4" />
+                  </button>
+                </div>
               </td>
             </tr>
           ))}
