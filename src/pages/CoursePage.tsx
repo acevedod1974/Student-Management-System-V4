@@ -25,17 +25,16 @@ import { useParams, Navigate } from "react-router-dom";
 import { UserPlus, Edit2 } from "lucide-react";
 import { GradesTable } from "../components/GradesTable";
 import { CourseStats } from "../components/CourseStats";
-import { GradeDistributionChart } from "../components/GradeDistributionChart";
 import { ExamPerformanceChart } from "../components/ExamPerformanceChart";
 import { StudentForm } from "../components/StudentForm";
 import { useCourseStore } from "../store/useCourseStore";
 import { Link } from "react-router-dom";
 import { CourseCard } from "../components/CourseCard";
-import { CourseOverviewChart } from "../components/CourseOverviewChart";
 import { PlusCircle, Trash2 } from "lucide-react";
 import toast from "react-hot-toast";
 import { confirmAction } from "../utils/confirmAction";
 import { DataManagement } from "../components/DataManagement";
+import { CourseOverviewChart } from "../components/CourseOverviewChart";
 
 /**
  * CoursePage Component
@@ -145,19 +144,9 @@ export const CoursePage: React.FC = () => {
           <CourseStats course={course} />
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div className="bg-white rounded-lg shadow p-6">
-            <h2 className="text-xl font-semibold mb-4">
-              Distribución de Notas Finales
-            </h2>
-            <GradeDistributionChart course={course} />
-          </div>
-          <div className="bg-white rounded-lg shadow p-6">
-            <h2 className="text-xl font-semibold mb-4">
-              Rendimiento por Examen
-            </h2>
-            <ExamPerformanceChart course={course} />
-          </div>
+        <div className="bg-white rounded-lg shadow p-6">
+          <h2 className="text-xl font-semibold mb-4">Rendimiento por Examen</h2>
+          <ExamPerformanceChart course={course} />
         </div>
 
         <div className="bg-white rounded-lg shadow">
