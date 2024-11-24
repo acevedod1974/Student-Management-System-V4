@@ -50,7 +50,7 @@ export const GradesTable: React.FC<GradesTableProps> = ({
   course,
   student,
   onDeleteStudent,
-}) => {
+}): JSX.Element => {
   const {
     updateGrade,
     updateStudent,
@@ -65,6 +65,7 @@ export const GradesTable: React.FC<GradesTableProps> = ({
     studentId: string;
     gradeId: string;
     currentValue: number;
+    examName?: string;
   } | null>(null);
 
   // State to manage the currently editing student
@@ -233,7 +234,43 @@ export const GradesTable: React.FC<GradesTableProps> = ({
     navigate(`/course/${course.id}/student/${studentId}`);
   };
 
-  const students = student ? [student] : course.students;
+  const students: Student[] = student ? [student] : course.students;
+
+  // Function to calculate the sum of grades
+  const calculateFinalGrade = (grades: { value: number }[]): number => {
+    return grades.reduce((sum, grade) => sum + grade.value, 0);
+  };
+
+  const [gradeValues, setGradeValues] = useState<{
+    [key: string]: number | string;
+  }>({});
+
+  const handleEditClick = (studentId: string, examName: string) => {
+    const student = students.find((s) => s.id === studentId);
+    const grade = student?.grades.find((g) => g.examName === examName);
+    setGradeValues({
+      ...gradeValues,
+      [`${studentId}-${examName}`]: grade?.score || "",
+    });
+    setEditingCell({ studentId, gradeId: "", currentValue: 0, examName });
+  };
+
+  const handleGradeChange = (
+    studentId: string,
+    examName: string,
+    value: string
+  ) => {
+    setGradeValues({ ...gradeValues, [`${studentId}-${examName}`]: value });
+  };
+
+  const handleSaveClick = (studentId: string, examName: string) => {
+    const gradeValue = gradeValues[`${studentId}-${examName}`];
+    if (gradeValue !== undefined) {
+      updateGrade(course.id, studentId, examName, Number(gradeValue));
+      toast.success("Calificación guardada");
+    }
+    setEditingCell(null);
+  };
 
   return (
     <div className="overflow-x-auto">
@@ -307,113 +344,114 @@ export const GradesTable: React.FC<GradesTableProps> = ({
           </tr>
         </thead>
         <tbody className="divide-y divide-gray-200">
-          {students.map((student) => (
-            <tr key={student.id} className="hover:bg-gray-50">
-              <td className="px-6 py-4 whitespace-nowrap">
-                <div className="space-y-2">
-                  <span
-                    onClick={() => handleNameClick(student.id)}
-                    className="cursor-pointer text-blue-600 hover:underline"
-                  >
-                    {student.firstName} {student.lastName}
-                  </span>
-                  {editingStudent?.id === student.id && (
-                    <div className="flex gap-2">
-                      <input
-                        type="text"
-                        value={editingStudent.firstName}
-                        onChange={(e) =>
-                          setEditingStudent({
-                            ...editingStudent,
-                            firstName: e.target.value,
-                          })
-                        }
-                        onKeyDown={(e) => handleKeyPress(e, "student")}
-                        className="block w-full px-2 py-1 text-sm border rounded"
-                        autoFocus
-                      />
-                      <input
-                        type="text"
-                        value={editingStudent.lastName}
-                        onChange={(e) =>
-                          setEditingStudent({
-                            ...editingStudent,
-                            lastName: e.target.value,
-                          })
-                        }
-                        onKeyDown={(e) => handleKeyPress(e, "student")}
-                        className="block w-full px-2 py-1 text-sm border rounded"
-                      />
-                      <button
-                        onClick={() => handleEditSave("student", student.id)}
-                        className="p-1 text-green-600 hover:bg-green-50 rounded-full transition-colors"
-                      >
-                        <Save className="w-4 h-4" />
-                      </button>
-                    </div>
-                  )}
-                </div>
-              </td>
-              {course.exams.map((exam, index) => {
-                const grade = student.grades.find(
-                  (g) => g.examName === exam.name
-                );
-                return (
-                  <td key={exam.name} className="px-6 py-4 whitespace-nowrap">
-                    {editingCell?.studentId === student.id &&
-                    editingCell.gradeId === exam.name ? (
-                      <div className="flex items-center gap-2">
+          {students.map((student) => {
+            const finalGrade = calculateFinalGrade(
+              student.grades.map((grade) => ({ value: grade.score }))
+            );
+            return (
+              <tr key={student.id} className="hover:bg-gray-50">
+                <td className="px-6 py-4 whitespace-nowrap">
+                  <div className="space-y-2">
+                    <span
+                      onClick={() => handleNameClick(student.id)}
+                      className="cursor-pointer text-blue-600 hover:underline"
+                    >
+                      {student.firstName} {student.lastName}
+                    </span>
+                    {editingStudent?.id === student.id && (
+                      <div className="flex gap-2">
                         <input
-                          type="number"
-                          value={editingCell.currentValue}
+                          type="text"
+                          value={editingStudent.firstName}
                           onChange={(e) =>
-                            setEditingCell({
-                              ...editingCell,
-                              currentValue: Number(e.target.value),
+                            setEditingStudent({
+                              ...editingStudent,
+                              firstName: e.target.value,
                             })
                           }
-                          onKeyDown={(e) => handleKeyPress(e, "grade")}
+                          onKeyDown={(e) => handleKeyPress(e, "student")}
                           className="block w-full px-2 py-1 text-sm border rounded"
                           autoFocus
                         />
+                        <input
+                          type="text"
+                          value={editingStudent.lastName}
+                          onChange={(e) =>
+                            setEditingStudent({
+                              ...editingStudent,
+                              lastName: e.target.value,
+                            })
+                          }
+                          onKeyDown={(e) => handleKeyPress(e, "student")}
+                          className="block w-full px-2 py-1 text-sm border rounded"
+                        />
                         <button
-                          onClick={() => handleEditSave("grade", exam.name)}
+                          onClick={() => handleEditSave("student", student.id)}
                           className="p-1 text-green-600 hover:bg-green-50 rounded-full transition-colors"
                         >
                           <Save className="w-4 h-4" />
                         </button>
                       </div>
-                    ) : (
-                      <span
-                        onClick={() =>
-                          handleEditStart("grade", student.id, {
-                            gradeId: exam.name,
-                            currentValue: grade ? grade.score : 0,
-                          })
-                        }
-                        className="cursor-pointer"
-                      >
-                        {grade ? grade.score : 0}
-                      </span>
                     )}
-                  </td>
-                );
-              })}
-              <td className="px-6 py-4 whitespace-nowrap">
-                {student.grades.reduce((acc, grade) => acc + grade.score, 0)}
-              </td>
-              <td className="px-6 py-4 whitespace-nowrap">
-                <div className="flex items-center gap-2">
-                  <button
-                    onClick={() => onDeleteStudent(student.id)}
-                    className="p-2 text-red-600 hover:bg-red-50 rounded-full transition-colors"
-                  >
-                    <Trash2 className="w-4 h-4" />
-                  </button>
-                </div>
-              </td>
-            </tr>
-          ))}
+                  </div>
+                </td>
+                {course.exams.map((exam) => {
+                  const grade = student.grades.find(
+                    (g) => g.examName === exam.name
+                  );
+                  const isEditing =
+                    editingCell?.studentId === student.id &&
+                    editingCell.examName === exam.name;
+                  return (
+                    <td key={exam.name} className="px-6 py-4 whitespace-nowrap">
+                      {isEditing ? (
+                        <div className="flex items-center gap-2">
+                          <input
+                            type="number"
+                            value={gradeValues[`${student.id}-${exam.name}`]}
+                            onChange={(e) =>
+                              handleGradeChange(
+                                student.id,
+                                exam.name,
+                                e.target.value
+                              )
+                            }
+                            className="block w-full px-2 py-1 text-sm border rounded"
+                            autoFocus
+                          />
+                          <button
+                            onClick={() =>
+                              handleSaveClick(student.id, exam.name)
+                            }
+                            className="p-1 text-green-600 hover:bg-green-50 rounded-full transition-colors"
+                          >
+                            <Save className="w-4 h-4" />
+                          </button>
+                        </div>
+                      ) : (
+                        <div
+                          onClick={() => handleEditClick(student.id, exam.name)}
+                        >
+                          {grade?.score || "N/A"}
+                        </div>
+                      )}
+                    </td>
+                  );
+                })}
+                <td>{finalGrade}</td>
+                <td className="px-6 py-4 whitespace-nowrap">
+                  <div className="flex items-center gap-2">
+                    <button
+                      onClick={() => onDeleteStudent(student.id)}
+                      className="p-2 text-red-600 hover:bg-red-50 rounded-full transition-colors"
+                    >
+                      <Trash2 className="w-4 h-4" />
+                    </button>
+                  </div>
+                </td>
+              </tr>
+            );
+          })}
         </tbody>
       </table>
       {!student && (
@@ -436,3 +474,5 @@ export const GradesTable: React.FC<GradesTableProps> = ({
     </div>
   );
 };
+
+export default GradesTable;
