@@ -80,3 +80,5 @@ function processDirectory(directory) {
 }
 
 processDirectory(path.join(__dirname, "src"));
+
+// If this script is not used in your build process or as part of any automation, it can be deleted.
